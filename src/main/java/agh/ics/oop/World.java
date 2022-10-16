@@ -5,7 +5,6 @@ public class World {
     public static void main(String[] args) {
         System.out.println("system wystartowal\n");
         Direction[] enumArgs = stringsToEnums(args);
-//        Direction[] enumArgs ={Direction.RIGHT, Direction.LEFT};
         run(enumArgs);
         System.out.println("system zakonczyl dzialanie");
     }
@@ -18,7 +17,6 @@ public class World {
                 case RIGHT -> "pojazd skręcił w prawo";
                 case BACKWARD -> "pojazd jedzie do tyłu";
                 case FORWARD -> "pojazd jedzie do przodu";
-                default -> "kupa";
             };
             System.out.println(message);
         }
