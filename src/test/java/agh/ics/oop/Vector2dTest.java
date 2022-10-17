@@ -39,7 +39,7 @@ public class Vector2dTest {
         Vector2d vector3 = new Vector2d(2, 5);
         Vector2d vector4 = new Vector2d(2, 7);
         Assertions.assertEquals(this.vector1.upperRight(this.vector2), vector3);
-        Assertions.assertNotEquals(this.vector1.upperRight(this.vector2), vector4);
+//        Assertions.assertNotEquals(this.vector1.upperRight(this.vector2), vector4);
     }
 
     @Test
@@ -47,7 +47,7 @@ public class Vector2dTest {
         Vector2d vector3 = new Vector2d(1, 4);
         Vector2d vector4 = new Vector2d(2, 7);
         Assertions.assertEquals(this.vector1.lowerLeft(this.vector2), vector3);
-        Assertions.assertNotEquals(this.vector1.lowerLeft(this.vector2), vector4);
+//        Assertions.assertNotEquals(this.vector1.lowerLeft(this.vector2), vector4);
     }
 
     @Test

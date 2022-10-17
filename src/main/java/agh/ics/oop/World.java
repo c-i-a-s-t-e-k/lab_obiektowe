@@ -8,18 +8,27 @@ public class World {
 //        run(enumArgs);
 //        System.out.println("system zakonczyl dzialanie");
 
-        Vector2d position1 = new Vector2d(1,2);
-        System.out.println(position1);
-        Vector2d position2 = new Vector2d(-2,1);
-        System.out.println(position2);
-        System.out.println(position1.add(position2));
+//        Vector2d position1 = new Vector2d(1,2);
+//        System.out.println(position1);
+//        Vector2d position2 = new Vector2d(-2,1);
+//        System.out.println(position2);
+//        System.out.println(position1.add(position2));
 
-        MapDirection direction = MapDirection.NORTH;
-        System.out.println(direction.next());
-        System.out.println(direction.next().previous());
-        for (MapDirection el : MapDirection.values()){
-            System.out.println(el.toUnitVector());
+//        MapDirection direction = MapDirection.NORTH;
+//        System.out.println(direction.next());
+//        System.out.println(direction.next().previous());
+//        for (MapDirection el : MapDirection.values()){
+//            System.out.println(el.toUnitVector());
+//        }
+
+        Animal szynszyl = new Animal();
+        System.out.println(szynszyl);
+        MoveDirection[] moves = {MoveDirection.RIGHT, MoveDirection.FORWARD,
+                MoveDirection.FORWARD, MoveDirection.FORWARD};
+        for (MoveDirection m : moves){
+            szynszyl.move(m);
         }
+        System.out.println(szynszyl);
 
     }
 
