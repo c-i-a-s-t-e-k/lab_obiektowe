@@ -12,22 +12,10 @@ public class Animal {
         return this.position.equals(position);
     }
 
-    private void move(int a){
-        Vector2d moveVec = switch (this.orientation){
-            case NORTH -> new Vector2d(0,a);
-            case SOUTH -> new Vector2d(0, -a);
-            case EAST -> new Vector2d(a, 0);
-            case WEST -> new Vector2d(-a, 0);
-        };
-
-        this.position.add(moveVec);
-        if(!((0 <= this.position.x && this.position.x <= 4) || (0 <= this.position.y && this.position.y <= 4))){
-            System.out.println("non");
-            this.position.subtract(moveVec);
-        }
-    }
-
     public void move(MoveDirection direction){
+
+        Vector2d moveVector = null;
+
         switch (direction){
             case LEFT:
                 this.orientation = this.orientation.previous();
@@ -36,12 +24,17 @@ public class Animal {
                 this.orientation = this.orientation.next();
                 break;
             case FORWARD:
-                move(1);
+                moveVector = this.orientation.toUnitVector();
                 break;
             case BACKWARD:
-                move(-1);
+                moveVector = this.orientation.toUnitVector().opposite();
                 break;
         }
-//        this.position.add(new Vector2d(1,1));
+        if (moveVector != null){
+            this.position = this.position.add(moveVector);
+            if ((this.position.x < 0 || 4 < this.position.x) || (this.position.y < 0 || 4 < this.position.y)){
+                this.position = this.position.subtract(moveVector);
+            }
+        }
     }
 }

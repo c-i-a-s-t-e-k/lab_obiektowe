@@ -23,9 +23,8 @@ public class World {
 
         Animal szynszyl = new Animal();
         System.out.println(szynszyl);
-        MoveDirection[] moves = {MoveDirection.RIGHT, MoveDirection.FORWARD,
-                MoveDirection.FORWARD, MoveDirection.FORWARD};
-        for (MoveDirection m : moves){
+        String[] movesStr = {"r", "f", "f", "f", "x"};
+        for (MoveDirection m : OptionsParser.parse(args)){
             szynszyl.move(m);
         }
         System.out.println(szynszyl);
@@ -44,33 +43,5 @@ public class World {
             System.out.println(message);
         }
         System.out.println();
-    }
-
-    static MoveDirection[] stringsToEnums(String[] args) {
-        MoveDirection[] enumArgs = new MoveDirection[args.length + 1];
-        int i = 0;
-        for (String dir : args) {
-            switch (dir) {
-                case "f":
-                    enumArgs[i] = MoveDirection.FORWARD;
-                    i = i + 1;
-                    break;
-                case "b":
-                    enumArgs[i] = MoveDirection.BACKWARD;
-                    i = i + 1;
-                    break;
-                case "l":
-                    enumArgs[i] = MoveDirection.LEFT;
-                    i = i + 1;
-                    break;
-                case "r":
-                    enumArgs[i] = MoveDirection.RIGHT;
-                    i = i + 1;
-                    break;
-                default:
-                    break;
-            }
-        }
-        return Arrays.copyOfRange(enumArgs, 0, i);
     }
 }
