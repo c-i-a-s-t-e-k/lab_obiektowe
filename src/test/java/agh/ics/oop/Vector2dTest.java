@@ -10,6 +10,7 @@ public class Vector2dTest {
     @Test
     public void testEquals(){
         Vector2d vector3 = new Vector2d(1,4);
+        Assertions.assertFalse(this.vector1.equals("I am not a Vector"));
         Assertions.assertTrue(this.vector1.equals(vector3));
         Assertions.assertTrue(this.vector1.equals((Object) vector3));
         Assertions.assertFalse(this.vector2.equals(this.vector1));

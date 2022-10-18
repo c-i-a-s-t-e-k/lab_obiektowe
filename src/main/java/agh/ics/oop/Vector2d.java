@@ -47,6 +47,8 @@ public class Vector2d {
     }
 
     public boolean equals(Object other){
+        if (this == other) return true;
+        if (!(other instanceof Vector2d)) return false;
         return (this.x == ((Vector2d) other).x) && (this.y == ((Vector2d) other).y);
     }
 

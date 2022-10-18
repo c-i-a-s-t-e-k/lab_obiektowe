@@ -23,8 +23,8 @@ public class World {
 
         Animal szynszyl = new Animal();
         System.out.println(szynszyl);
-        String[] movesStr = {"r", "f", "f", "f", "x"};
-        for (MoveDirection m : OptionsParser.parse(args)){
+        String[] movesStr = {"right", "f", "backward", "f", "x"};
+        for (MoveDirection m : OptionsParser.parse(movesStr)){
             szynszyl.move(m);
         }
         System.out.println(szynszyl);
