@@ -3,9 +3,9 @@ package agh.ics.oop;
 import javax.lang.model.type.NullType;
 
 enum MapDirection {
-    NORTH (new Vector2d(1,0), "Północ"),
-    SOUTH (new Vector2d(1,0), "Południe"),
-    WEST (new Vector2d(1,0), "Zachód"),
+    NORTH (new Vector2d(0,1), "Północ"),
+    SOUTH (new Vector2d(0,-1), "Południe"),
+    WEST (new Vector2d(-1,0), "Zachód"),
     EAST (new Vector2d(1,0), "Wschód");
 
     private final Vector2d unitVector;

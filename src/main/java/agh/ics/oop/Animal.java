@@ -4,6 +4,12 @@ public class Animal {
     private MapDirection orientation = MapDirection.NORTH;
     private Vector2d position = new Vector2d(2,2);
 
+    public MapDirection getOrientation(){
+        return this.orientation;
+    }
+    public Vector2d getPosition(){
+        return this.position;
+    }
     public String toString(){
         return "zwierze jest na polu " + this.position + ", zwrócony na " + this.orientation;
     }
