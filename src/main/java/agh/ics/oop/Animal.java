@@ -1,8 +1,16 @@
 package agh.ics.oop;
-
 public class Animal {
     private MapDirection orientation = MapDirection.NORTH;
     private Vector2d position = new Vector2d(2,2);
+    private final IWorldMap map;
+
+    public Animal(IWorldMap map){
+        this.map = map;
+    }
+    public Animal(IWorldMap map, Vector2d initialPosition){
+        this.map = map;
+        this.position = initialPosition;
+    }
 
     public MapDirection getOrientation(){
         return this.orientation;
@@ -11,7 +19,7 @@ public class Animal {
         return this.position;
     }
     public String toString(){
-        return "zwierze jest na polu " + this.position + ", zwrócony na " + this.orientation;
+        return this.orientation + "";
     }
 
     public Boolean isAt(Vector2d position){
@@ -37,9 +45,8 @@ public class Animal {
                 break;
         }
         if (moveVector != null){
-            this.position = this.position.add(moveVector);
-            if ((this.position.x < 0 || 4 < this.position.x) || (this.position.y < 0 || 4 < this.position.y)){
-                this.position = this.position.subtract(moveVector);
+            if (map.canMoveTo(this.position.add(moveVector))){
+                this.position = this.position.add(moveVector);
             }
         }
     }

@@ -3,10 +3,10 @@ package agh.ics.oop;
 import javax.lang.model.type.NullType;
 
 enum MapDirection {
-    NORTH (new Vector2d(0,1), "Północ"),
-    SOUTH (new Vector2d(0,-1), "Południe"),
-    WEST (new Vector2d(-1,0), "Zachód"),
-    EAST (new Vector2d(1,0), "Wschód");
+    NORTH (new Vector2d(0,1), "N"),
+    SOUTH (new Vector2d(0,-1), "S"),
+    WEST (new Vector2d(-1,0), "W"),
+    EAST (new Vector2d(1,0), "E");
 
     private final Vector2d unitVector;
     private final String directionName;

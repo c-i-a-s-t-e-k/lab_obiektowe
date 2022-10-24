@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class AnimalTest {
     @Test
-    public void test1Move(){
+    public void testMoveMethodeOrientation(){
         Animal animal1 = new Animal();
         Assertions.assertEquals(animal1.getOrientation(), MapDirection.NORTH);
         animal1.move(MoveDirection.RIGHT);
@@ -29,7 +29,7 @@ public class AnimalTest {
         animal1.move(MoveDirection.LEFT);
     }
     @Test
-    public void test2Move(){
+    public void testMoveMethodeMoving(){
         Animal animal1 = new Animal();
         Vector2d vector0 = new Vector2d(2, 2);
         Assertions.assertEquals(animal1.getPosition(), vector0);
@@ -59,7 +59,7 @@ public class AnimalTest {
     }
 
     @Test
-    public void test3Move(){
+    public void testMoveMethodeMowingOutOfMap(){
         Animal animal1 = new Animal();
 
         for(int i = 0; i < 5; i++){
