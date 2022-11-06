@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="agh.ics.oop.OptionsPaserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-10-24T18:11:46" hostname="LAPTOP-CIASTEK" time="0.004">
+<testsuite name="agh.ics.oop.OptionsPaserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-11-06T15:53:47" hostname="LAPTOP-CIASTEK" time="0.003">
   <properties/>
-  <testcase name="testParse()" classname="agh.ics.oop.OptionsPaserTest" time="0.004"/>
+  <testcase name="testParse()" classname="agh.ics.oop.OptionsPaserTest" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
