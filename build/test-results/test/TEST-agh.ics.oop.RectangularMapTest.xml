@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="agh.ics.oop.RectangularMapTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-11-06T15:53:47" hostname="LAPTOP-CIASTEK" time="0.008">
+<testsuite name="agh.ics.oop.RectangularMapTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-11-07T18:48:01" hostname="LAPTOP-CIASTEK" time="0.008">
   <properties/>
-  <testcase name="testAnimalsOnSamePlace()" classname="agh.ics.oop.RectangularMapTest" time="0.003"/>
+  <testcase name="testAnimalsOnSamePlace()" classname="agh.ics.oop.RectangularMapTest" time="0.004"/>
   <testcase name="testObjectAt()" classname="agh.ics.oop.RectangularMapTest" time="0.001"/>
-  <testcase name="testPlaceAndIsOccupied()" classname="agh.ics.oop.RectangularMapTest" time="0.001"/>
+  <testcase name="testPlaceAndIsOccupied()" classname="agh.ics.oop.RectangularMapTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -52,5 +52,16 @@ public class Vector2d {
         return (this.x == ((Vector2d) other).x) && (this.y == ((Vector2d) other).y);
     }
 
+    public static Vector2d randomVectorInRectangle(Vector2d vector1, Vector2d vector2){
+        int leftX = Math.min(vector1.x, vector2.x);
+        int rightX = Math.max(vector1.x, vector2.x);
+
+        int leftY = Math.min(vector1.y, vector2.y);
+        int rightY = Math.max(vector1.y, vector2.y);
+
+        return new Vector2d((int) ( Math.random() * (rightX - leftX + 1) + leftX)
+                , (int) ( Math.random() * (rightY - leftY + 1) + leftY));
+    }
+
 
 }
