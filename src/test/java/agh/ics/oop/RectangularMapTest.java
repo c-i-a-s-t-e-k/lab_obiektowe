@@ -26,7 +26,15 @@ public class RectangularMapTest {
         Assertions.assertTrue(animal == map.objectAt(new Vector2d(2,2)));
         Assertions.assertEquals(null, map.objectAt(new Vector2d(2,4)));
     }
-
+    @Test
+    public void testPlace(){
+        IWorldMap map = new RectangularMap(2,2);
+        Vector2d vector2d = new Vector2d(0,0);
+        Animal animal = new Animal(map, vector2d);
+        Assertions.assertTrue(map.place(animal));
+        Assertions.assertSame(animal, map.objectAt(vector2d));
+        Assertions.assertFalse(map.place(new Animal(map, vector2d)));
+    }
     @Test
     public void testAnimalsOnSamePlace(){
         IWorldMap map = new RectangularMap(4,4);

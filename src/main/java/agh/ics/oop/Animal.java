@@ -4,7 +4,6 @@ public class Animal {
     private Vector2d position;
     private final IWorldMap map;
 
-//    use this()
     public Animal(){
         this(new RectangularMap(4,4), new Vector2d(2,2));
     }
