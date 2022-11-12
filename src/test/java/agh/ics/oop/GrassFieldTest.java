@@ -14,8 +14,10 @@ public class GrassFieldTest {
         Assertions.assertFalse(map.place(new Animal(map, vector2d)));
 
         for(int i = 0;i < 4; i++)
-            for (int j= 0; j < 4; j++)
+            for (int j= 0; j < 4; j++){
+                if(i == 0 && j == 0) continue;
                 Assertions.assertTrue(map.place(new Animal(map,new Vector2d(i, j))));
+            }
     }
     @Test
     public void testObjectAt(){
@@ -25,6 +27,12 @@ public class GrassFieldTest {
         map.place(animal);
         Assertions.assertSame(animal,map.objectAt(vector2d));
         Assertions.assertNull(map.objectAt(new Vector2d(-1,-1)));
+
+        int numberOfFindedGrasses = 0;
+        for(int i = 0;i < 4; i++)
+            for (int j= 0; j < 4; j++)
+                if (map.objectAt(new Vector2d(i,j)) instanceof Grass) numberOfFindedGrasses++;
+        Assertions.assertEquals(1, numberOfFindedGrasses);
     }
 
     @Test

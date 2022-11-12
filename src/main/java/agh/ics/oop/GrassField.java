@@ -4,10 +4,10 @@ import java.lang.Math;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GrassField implements IWorldMap{
+public class GrassField extends AbstractWorldMap{
     private static final Vector2d lowerLeftGrassPosition = new Vector2d(0,0);
     private final List<Grass> grassList = new ArrayList<>();
-    private final List<Animal> animalList = new ArrayList<>();
+    private int grassAmount;
     private final Vector2d upperRightGrassPosition;
     private final MapVisualizer mapVisualizer = new MapVisualizer(this);
 
@@ -23,7 +23,15 @@ public class GrassField implements IWorldMap{
         }
     }
 
+    public void eatGrass(Grass grassToEat){
+        if(grassList.contains(grassToEat)) {
+            grassList.remove(grassToEat);
+            placeGrass(1);
+        }
+    }
+
     public GrassField(int grassAmount){
+        this.grassAmount = grassAmount;
         upperRightGrassPosition = new Vector2d((int) Math.sqrt(grassAmount * 10),(int) Math.sqrt(grassAmount * 10));
         placeGrass(grassAmount);
     }
@@ -49,30 +57,28 @@ public class GrassField implements IWorldMap{
         return (objectAt(position) == null || objectAt(position) instanceof Grass);
     }
 
-    @Override
-    public boolean isOccupied(Vector2d position) {
-        return objectAt(position) != null;
-    }
-
-    @Override
-    public boolean place(Animal animal) {
-        if (canMoveTo(animal.getPosition())){
-            animalList.add(animal);
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
 
     @Override
     public Object objectAt(Vector2d position) {
-        for (Animal animal : animalList){
-            if (position.equals(animal.getPosition())) return (Object) animal;
+        if (super.objectAt(position) == null) {
+            for (Grass grass : grassList) {
+                if (position.equals(grass.getPosition())) return (Object) grass;
+            }
+            return null;
         }
-        for (Grass grass : grassList){
-            if (position.equals(grass.getPosition())) return (Object) grass;
+        else return super.objectAt(position);
+    }
+
+    @Override
+    public boolean place(Animal animal){
+        if((upperRightGrassPosition.x + 1) * (upperRightGrassPosition.y + 1) < grassAmount + animalList.size())
+            return false;
+        Object somethink = this.objectAt(animal.getPosition());
+        if(super.place(animal)){
+            if (somethink instanceof Grass)
+                eatGrass((Grass) somethink);
+            return true;
         }
-        return null;
+        return false;
     }
 }

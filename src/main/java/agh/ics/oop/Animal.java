@@ -49,7 +49,11 @@ public class Animal {
         }
         if (moveVector != null){
             if (map.canMoveTo(this.position.add(moveVector))){
-                this.position = this.position.add(moveVector);
+                if(map instanceof GrassField && map.objectAt(this.position.add(moveVector)) instanceof Grass){
+                    this.position = this.position.add(moveVector);
+                    ((GrassField) map).eatGrass((Grass) map.objectAt(this.position.add(moveVector)));
+                }
+                else this.position = this.position.add(moveVector);
             }
         }
     }

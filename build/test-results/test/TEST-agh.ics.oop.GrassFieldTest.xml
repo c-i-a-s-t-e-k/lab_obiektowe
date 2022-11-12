@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="agh.ics.oop.GrassFieldTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2022-11-11T23:29:30" hostname="LAPTOP-CIASTEK" time="0.012">
+<testsuite name="agh.ics.oop.GrassFieldTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-11-12T00:35:49" hostname="LAPTOP-CIASTEK" time="0.04">
   <properties/>
-  <testcase name="testPlace()" classname="agh.ics.oop.GrassFieldTest" time="0.005"/>
-  <testcase name="testIsOccupied()" classname="agh.ics.oop.GrassFieldTest" time="0.001"/>
-  <testcase name="testCanMoveTo()" classname="agh.ics.oop.GrassFieldTest" time="0.001"/>
-  <testcase name="testObjectAt()" classname="agh.ics.oop.GrassFieldTest" time="0.002"/>
-  <system-out><![CDATA[]]></system-out>
+  <testcase name="testPlace()" classname="agh.ics.oop.GrassFieldTest" time="0.04"/>
+  <system-out><![CDATA[ y\x -1 0 1 2 3
+  4: -----------
+  3: | |N|N|N|N|
+  2: | |N|N|N|N|
+  1: | |N|N|N|N|
+  0: | |*|N|N|N|
+ -1: |N| | | | |
+ -2: -----------
+
+]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

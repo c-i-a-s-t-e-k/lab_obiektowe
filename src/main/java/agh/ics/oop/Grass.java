@@ -7,6 +7,12 @@ public class Grass {
         this.position = position;
     }
 
+    @Override
+    public boolean equals(Object other){
+        if (other instanceof Grass)
+            return this.position.equals(((Grass) other).position);
+        return false;
+    }
     public Vector2d getPosition() {
         return position;
     }
