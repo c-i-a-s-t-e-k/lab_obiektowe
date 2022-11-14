@@ -15,7 +15,6 @@ public class GrassFieldTest {
 
         for(int i = 0;i < 4; i++)
             for (int j= 0; j < 4; j++){
-                if(i == 0 && j == 0) continue;
                 Assertions.assertTrue(map.place(new Animal(map,new Vector2d(i, j))));
             }
     }
