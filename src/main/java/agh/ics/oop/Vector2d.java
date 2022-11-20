@@ -1,7 +1,8 @@
 package agh.ics.oop;
 import java.lang.String;
+import java.util.Objects;
 
-public class Vector2d {
+public class Vector2d{
     public final int x;
     public final int y;
 
@@ -15,7 +16,7 @@ public class Vector2d {
     }
 
     public int hashCode() {
-        return this.x * this.y;
+        return Objects.hash(this.x, this.y);
     }
 
     public boolean precedes(Vector2d other){

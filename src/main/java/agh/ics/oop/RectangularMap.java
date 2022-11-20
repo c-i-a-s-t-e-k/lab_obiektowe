@@ -13,7 +13,7 @@ public class RectangularMap extends AbstractWorldMap{
     }
 
     public boolean canMoveTo(Vector2d position) {
-        return (position.precedes(upperRight) && (position.follows(lowerLeft)) && super.canMoveTo(position));
+        return (position.precedes(upperRight) && (position.follows(lowerLeft)) && !(isOccupied(position)));
     }
 
     public Vector2d getLowerLeft(){
