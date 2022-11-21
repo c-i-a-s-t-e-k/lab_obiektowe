@@ -11,11 +11,12 @@ abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObserver{
     @Override
     public boolean place(Animal animal) {
         if (canMoveTo(animal.getPosition())){
+            animal.addObserver(this);
             animals.put(animal.getPosition(), animal);
             return true;
         }
         else {
-            return false;
+            throw new IllegalArgumentException("cannot place animal on position:" + animal.getPosition());
         }
     }
 

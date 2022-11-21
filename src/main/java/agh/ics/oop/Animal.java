@@ -17,9 +17,6 @@ public class Animal {
     }
     public Animal(IWorldMap map, Vector2d initialPosition){
         this.map = map;
-        if(map instanceof IPositionChangeObserver){
-            this.addObserver((IPositionChangeObserver) map);
-        }
         this.position = initialPosition;
     }
 
@@ -54,16 +51,17 @@ public class Animal {
             case BACKWARD -> moveVector = this.orientation.toUnitVector().opposite();
         }
         if (moveVector != null){
+            Vector2d oldPosition = this.position;
             Vector2d newPosition = this.position.add(moveVector);
             if (map.canMoveTo(newPosition)){
-                positionChanged(newPosition);
                 this.position = newPosition;
+                this.positionChanged(oldPosition);
             }
         }
     }
-    private void positionChanged(Vector2d newPosition){
+    private void positionChanged(Vector2d oldPosition){
         for(IPositionChangeObserver observer : observers){
-            observer.positionChanged(this.position, newPosition);
+            observer.positionChanged(oldPosition, this.position);
         }
     }
 }

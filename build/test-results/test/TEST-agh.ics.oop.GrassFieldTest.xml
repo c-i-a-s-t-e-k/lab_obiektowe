@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="agh.ics.oop.GrassFieldTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2022-11-20T14:46:12" hostname="LAPTOP-CIASTEK" time="0.02">
+<testsuite name="agh.ics.oop.GrassFieldTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2022-11-21T20:22:40" hostname="LAPTOP-CIASTEK" time="0.021">
   <properties/>
-  <testcase name="testPlace()" classname="agh.ics.oop.GrassFieldTest" time="0.009"/>
+  <testcase name="testPlace()" classname="agh.ics.oop.GrassFieldTest" time="0.014"/>
   <testcase name="testIsOccupied()" classname="agh.ics.oop.GrassFieldTest" time="0.002"/>
-  <testcase name="testCanMoveTo()" classname="agh.ics.oop.GrassFieldTest" time="0.005"/>
+  <testcase name="testCanMoveTo()" classname="agh.ics.oop.GrassFieldTest" time="0.001"/>
   <testcase name="testObjectAt()" classname="agh.ics.oop.GrassFieldTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

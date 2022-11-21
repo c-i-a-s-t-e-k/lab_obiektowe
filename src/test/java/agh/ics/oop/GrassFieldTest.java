@@ -11,7 +11,10 @@ public class GrassFieldTest {
         Animal animal = new Animal(map, vector2d);
         Assertions.assertTrue(map.place(animal));
         Assertions.assertSame(animal, map.objectAt(vector2d));
-        Assertions.assertFalse(map.place(new Animal(map, vector2d)));
+        Exception e = Assertions.assertThrows(IllegalArgumentException.class, ()->{
+            map.place(new Animal(map, vector2d));
+        });
+        Assertions.assertEquals("cannot place animal on position:" + vector2d, e.getMessage());
 
         for(int i = 0;i < 4; i++)
             for (int j= 0; j < 4; j++){

@@ -33,13 +33,21 @@ public class RectangularMapTest {
         Animal animal = new Animal(map, vector2d);
         Assertions.assertTrue(map.place(animal));
         Assertions.assertSame(animal, map.objectAt(vector2d));
-        Assertions.assertFalse(map.place(new Animal(map, vector2d)));
+        Exception e = Assertions.assertThrows(IllegalArgumentException.class, ()->{
+            map.place(new Animal(map, vector2d));
+        });
+        Assertions.assertEquals("cannot place animal on position:" + vector2d, e.getMessage());
     }
     @Test
     public void testAnimalsOnSamePlace(){
         IWorldMap map = new RectangularMap(4,4);
-        map.place(new Animal(map, new Vector2d(2,2)));
-        Assertions.assertFalse(map.place(new Animal(map, new Vector2d(2,2))));
+        Vector2d vector2d = new Vector2d(2,2);
+        map.place(new Animal(map, vector2d));
+        Exception e = Assertions.assertThrows(IllegalArgumentException.class, ()->{
+            map.place(new Animal(map, vector2d));
+        });
+        Assertions.assertEquals("cannot place animal on position:" + vector2d, e.getMessage());
+
 
         map.place(new Animal(map, new Vector2d(2,1)));
         ((Animal) map.objectAt(new Vector2d(2,1))).move(MoveDirection.FORWARD);
