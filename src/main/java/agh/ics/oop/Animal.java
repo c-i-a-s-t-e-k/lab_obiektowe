@@ -3,11 +3,15 @@ package agh.ics.oop;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Animal {
+public class Animal{
     private MapDirection orientation = MapDirection.NORTH;
-    private Vector2d position;
     private final IWorldMap map;
     private final List<IPositionChangeObserver> observers = new ArrayList<>();
+    protected Vector2d position;
+
+    public Vector2d getPosition(){
+        return position;
+    }
 
     public Animal(){
         this(new RectangularMap(4,4), new Vector2d(2,2));
@@ -28,9 +32,6 @@ public class Animal {
     }
     public MapDirection getOrientation(){
         return this.orientation;
-    }
-    public Vector2d getPosition(){
-        return this.position;
     }
     public String toString(){
         return this.orientation.toString();

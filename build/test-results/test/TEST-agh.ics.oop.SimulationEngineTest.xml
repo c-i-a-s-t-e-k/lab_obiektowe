@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="agh.ics.oop.SimulationEngineTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-11-21T20:22:40" hostname="LAPTOP-CIASTEK" time="0.007">
+<testsuite name="agh.ics.oop.SimulationEngineTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-11-23T23:01:07" hostname="LAPTOP-CIASTEK" time="0.003">
   <properties/>
-  <testcase name="testRunGrassField()" classname="agh.ics.oop.SimulationEngineTest" time="0.005"/>
+  <testcase name="testRunGrassField()" classname="agh.ics.oop.SimulationEngineTest" time="0.002"/>
   <testcase name="testRunRectangularMap()" classname="agh.ics.oop.SimulationEngineTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

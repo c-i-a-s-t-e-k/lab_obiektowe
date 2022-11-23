@@ -1,7 +1,6 @@
 package agh.ics.oop;
 
 import java.lang.Math;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +8,8 @@ public class GrassField extends AbstractWorldMap{
     private static final Vector2d lowerLeftGrassPosition = new Vector2d(0,0);
     private final Map<Vector2d,Grass> grasses = new HashMap<>();
     private final Vector2d upperRightGrassPosition;
+    private final MapBoundary mapBoundary;
+
 
     private void placeGrass(int grassAmount){
         int i = 0;
@@ -25,34 +26,18 @@ public class GrassField extends AbstractWorldMap{
     public GrassField(int grassAmount){
         upperRightGrassPosition = new Vector2d((int) Math.sqrt(grassAmount * 10),(int) Math.sqrt(grassAmount * 10));
         placeGrass(grassAmount);
+        Grass[] grassesTab = grasses.values().toArray(new Grass[0]);
+        mapBoundary = new MapBoundary(grassesTab);
     }
 
     @Override
     public Vector2d getLowerLeft(){
-        Grass[] grassTab = grasses.values().toArray(new Grass[0]);
-        Vector2d lowerLeft = grassTab[0].getPosition();
-
-        for (Grass grass : grassTab) {
-            lowerLeft = lowerLeft.lowerLeft(grass.getPosition());
-        }
-        for (Animal animal : animals.values()) {
-            lowerLeft = lowerLeft.lowerLeft(animal.getPosition());
-        }
-        return lowerLeft;
+        return  mapBoundary.getLoverLeft();
     }
 
     @Override
     public Vector2d getUpperRight(){
-        Grass[] grassTab = grasses.values().toArray(new Grass[0]);
-        Vector2d upperRight = grassTab[0].getPosition();
-
-        for (Grass grass : grassTab) {
-            upperRight = upperRight.upperRight(grass.getPosition());
-        }
-        for (Animal animal : animals.values()) {
-            upperRight = upperRight.upperRight(animal.getPosition());
-        }
-        return upperRight;
+        return mapBoundary.getUpperRight();
     }
 
     @Override
@@ -68,4 +53,13 @@ public class GrassField extends AbstractWorldMap{
         }
         else return super.objectAt(position);
     }
+
+    @Override
+    public boolean place(Animal animal){
+        if (super.place(animal)) {
+            animal.addObserver(this.mapBoundary);
+            return true;
+        }
+        else return false;
+        }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="agh.ics.oop.MapDirectionTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-11-21T20:22:40" hostname="LAPTOP-CIASTEK" time="0.003">
+<testsuite name="agh.ics.oop.MapDirectionTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-11-23T23:01:07" hostname="LAPTOP-CIASTEK" time="0.003">
   <properties/>
   <testcase name="testNext()" classname="agh.ics.oop.MapDirectionTest" time="0.001"/>
   <testcase name="testPrevious()" classname="agh.ics.oop.MapDirectionTest" time="0.001"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="agh.ics.oop.AnimalTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-11-21T20:22:40" hostname="LAPTOP-CIASTEK" time="0.039">
+<testsuite name="agh.ics.oop.AnimalTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-11-23T23:01:07" hostname="LAPTOP-CIASTEK" time="0.038">
   <properties/>
   <testcase name="testMoveMethodeOrientation()" classname="agh.ics.oop.AnimalTest" time="0.034"/>
   <testcase name="testMoveMethodeMoving()" classname="agh.ics.oop.AnimalTest" time="0.001"/>
