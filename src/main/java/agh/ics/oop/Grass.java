@@ -1,10 +1,10 @@
 package agh.ics.oop;
 
-public class Grass{
+public class Grass implements IMapElement{
     public Grass(Vector2d position){
         this.position = position;
     }
-    protected Vector2d position;
+    private Vector2d position;
 
     public Vector2d getPosition(){
         return position;
@@ -19,5 +19,9 @@ public class Grass{
 
     public String toString() {
         return "*";
+    }
+    public String getImageName(){
+        System.out.println("trawa.jpg");
+        return "trawa.jpg";
     }
 }

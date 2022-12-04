@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="agh.ics.oop.MapBoundaryTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-12-04T16:51:44" hostname="LAPTOP-CIASTEK" time="0.005">
+<testsuite name="agh.ics.oop.MapBoundaryTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-12-04T17:02:55" hostname="LAPTOP-CIASTEK" time="0.007">
   <properties/>
-  <testcase name="testGetBoundaryGrassField()" classname="agh.ics.oop.MapBoundaryTest" time="0.003"/>
-  <testcase name="testConstructor()" classname="agh.ics.oop.MapBoundaryTest" time="0.001"/>
+  <testcase name="testGetBoundaryGrassField()" classname="agh.ics.oop.MapBoundaryTest" time="0.004"/>
+  <testcase name="testConstructor()" classname="agh.ics.oop.MapBoundaryTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

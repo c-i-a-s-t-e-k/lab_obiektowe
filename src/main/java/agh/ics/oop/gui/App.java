@@ -9,12 +9,21 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
+import agh.ics.oop.IMapElement;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
+
+import java.io.FileNotFoundException;
 
 public class App extends Application{
     private final GridPane gridPane;
     private final IWorldMap map;
     private int height;
     private int width;
+    private final int sizeOfCell = 40;
     private Vector2d translationVector;
 
     public App(){
@@ -40,9 +49,9 @@ public class App extends Application{
     private void prepareGrid(){
         this.gridPane.setGridLinesVisible(true);
         for (int x = 0; x <= this.height + 1; x++)
-            this.gridPane.getRowConstraints().add(new RowConstraints(20));
+            this.gridPane.getRowConstraints().add(new RowConstraints(sizeOfCell));
         for (int y = 0; y <= this.width + 1; y++)
-            this.gridPane.getColumnConstraints().add(new ColumnConstraints(20));
+            this.gridPane.getColumnConstraints().add(new ColumnConstraints(sizeOfCell));
 
         this.gridPane.add(new Label("y\\x"),0,0,1,1);
         for (int x = 0; x <= this.width; x++)
@@ -56,7 +65,12 @@ public class App extends Application{
             for (int y = 0; y <= height; y++){
                 Object mapElement = map.objectAt(new Vector2d(x,y).add(translationVector));
                 if(mapElement != null){
-                    gridPane.add(new Label(mapElement.toString()), x + 1, y + 1, 1,1);
+                    try {
+                        gridPane.add(new GuiElementBox((IMapElement)mapElement).getVBox(), x + 1, y + 1, 1,1);
+                    }
+                    catch (FileNotFoundException ex){
+                        System.out.println("dupa");
+                    }
                 }
             }
         }
@@ -77,7 +91,7 @@ public class App extends Application{
         prepareGrid();
         fillGrid();
         System.out.println(width + " " + height);
-        Scene scene = new Scene(gridPane, 20 * (width + 2), 20 * (height + 2));
+        Scene scene = new Scene(gridPane, sizeOfCell * (width + 2), sizeOfCell * (height + 2));
         primaryStage.setScene(scene);
         primaryStage.show();
     }

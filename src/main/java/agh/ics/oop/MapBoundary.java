@@ -1,10 +1,5 @@
 package agh.ics.oop;
 
-import javafx.util.Pair;
-
-import java.awt.*;
-import java.util.*;
-
 public class MapBoundary implements IPositionChangeObserver{
     private final WeighedTreeSet xSet = new WeighedTreeSet();
     private final WeighedTreeSet ySet = new WeighedTreeSet();
@@ -39,11 +34,14 @@ public class MapBoundary implements IPositionChangeObserver{
     }
 
     public void positionChanged(Vector2d oldPosition, Vector2d newPosition){
-        xSet.remove(oldPosition.x);
-        xSet.add(newPosition.x);
-
-        ySet.remove(oldPosition.y);
-        ySet.add(newPosition.y);
+        if (oldPosition.x != newPosition.x) {
+            xSet.remove(oldPosition.x);
+            xSet.add(newPosition.x);
+        }
+        if (oldPosition.y != newPosition.y) {
+            ySet.remove(oldPosition.y);
+            ySet.add(newPosition.y);
+        }
     }
 
     public Vector2d getLowerLeft(){

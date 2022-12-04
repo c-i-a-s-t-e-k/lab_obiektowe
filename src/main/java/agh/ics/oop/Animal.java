@@ -3,7 +3,7 @@ package agh.ics.oop;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Animal{
+public class Animal implements IMapElement{
     private MapDirection orientation = MapDirection.NORTH;
     private final IWorldMap map;
     private final List<IPositionChangeObserver> observers = new ArrayList<>();
@@ -16,9 +16,9 @@ public class Animal{
     public Animal(){
         this(new RectangularMap(4,4), new Vector2d(2,2));
     }
-    public Animal(IWorldMap map){
-        this(map, new Vector2d(2,2));
-    }
+//    public Animal(IWorldMap map){
+//        this(map, new Vector2d(2,2));
+//    }
     public Animal(IWorldMap map, Vector2d initialPosition){
         this.map = map;
         this.position = initialPosition;
@@ -64,5 +64,9 @@ public class Animal{
         for(IPositionChangeObserver observer : observers){
             observer.positionChanged(oldPosition, this.position);
         }
+    }
+    public String getImageName(){
+        System.out.println("zwierze" + this.orientation.toString() + ".jpg");
+        return "zwierze" + this.orientation.toString() + ".jpg";
     }
 }
