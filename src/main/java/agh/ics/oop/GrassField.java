@@ -32,7 +32,7 @@ public class GrassField extends AbstractWorldMap{
 
     @Override
     public Vector2d getLowerLeft(){
-        return  mapBoundary.getLoverLeft();
+        return  mapBoundary.getLowerLeft();
     }
 
     @Override
@@ -57,7 +57,7 @@ public class GrassField extends AbstractWorldMap{
     @Override
     public boolean place(Animal animal){
         if (super.place(animal)) {
-            animal.addObserver(this.mapBoundary);
+            this.mapBoundary.place(animal);
             return true;
         }
         else return false;

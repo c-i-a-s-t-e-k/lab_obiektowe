@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="agh.ics.oop.WeighedTreeSetTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-12-04T16:51:44" hostname="LAPTOP-CIASTEK" time="0.004">
+  <properties/>
+  <testcase name="testAdd()" classname="agh.ics.oop.WeighedTreeSetTest" time="0.001"/>
+  <testcase name="testRemove2SameX()" classname="agh.ics.oop.WeighedTreeSetTest" time="0.001"/>
+  <testcase name="testRemove()" classname="agh.ics.oop.WeighedTreeSetTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
