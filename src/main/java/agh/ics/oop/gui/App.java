@@ -75,29 +75,7 @@ public class App extends Application implements IPositionChangeObserver{
 //        threads.add(new Thread((SimulationEngine)engine));
     }
 
-//    public App(){
-////        RectangularMap map = new RectangularMap(5,5);
-//        GrassField map = new GrassField(5);
-//        this.map = map;
-//        this.vBoxMapAnimals = map.getVBoxAnimals();
-////        this.vBoxMapGrasses = null;
-//        this.vBoxMapGrasses = map.getVBoxGrasses();
-//        this.gridPane = new GridPane();
-//        this.translationVector = new Vector2d(map.getLowerLeft().x, map.getUpperRight().y);
-//        this.height = map.getUpperRight().y - map.getLowerLeft().y;
-//        this.width = map.getUpperRight().x - map.getLowerLeft().x;
-//
-//        this.gridPane.setGridLinesVisible(true);
-//        this.gridPane.setAlignment(Pos.CENTER);
-//        fillGrid();
-//        drawAxis();
-//        for (int x = 0; x <= this.height + 1; x++)
-//            this.gridPane.getRowConstraints().add(new RowConstraints(sizeOfCell));
-//        for (int y = 0; y <= this.width + 1; y++)
-//            this.gridPane.getColumnConstraints().add(new ColumnConstraints(sizeOfCell));
-//    }
-
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage){
         HBox inputBox = new HBox();
         VBox mainBox = new VBox();
         Button startButton = new Button("start");

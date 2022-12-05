@@ -7,18 +7,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
-import java.awt.*;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.Objects;
-
 public class GuiElementBox {
-    private final Image image;
+    private final ImageLoader loader = new ImageLoader();
     private final VBox vBox = new VBox();
 
     public GuiElementBox(IMapElement mapElement){
-        image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(mapElement.getImageName())));
-        ImageView imageView = new ImageView(image);
+        Image image = loader.loadImage(mapElement.getImageName());
+        ImageView imageView = loader.getImageView(image);
         imageView.setFitWidth(20);
         imageView.setFitHeight(20);
 

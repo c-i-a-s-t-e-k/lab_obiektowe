@@ -53,14 +53,11 @@ public class SimulationEngine implements IEngine, Runnable{
         }
     }
 
-    private void delay() throws InterruptedException {
-        Thread.sleep(moveDelay);
-    }
     public void run() {
         for(int i = 0; i < moves.length; i++){
             animals.get(i % animals.size()).move(moves[i]);
             try {
-                delay();
+                Thread.sleep(moveDelay);
             }catch (InterruptedException e){
                 System.out.println("\n");
                 System.out.println(e.getMessage());
