@@ -1,6 +1,6 @@
 package agh.ics.oop;
 
-import gui.App;
+import agh.ics.oop.gui.App;
 import javafx.application.Application;
 
 

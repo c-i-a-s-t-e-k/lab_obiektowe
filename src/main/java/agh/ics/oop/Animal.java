@@ -16,9 +16,9 @@ public class Animal implements IMapElement{
     public Animal(){
         this(new RectangularMap(4,4), new Vector2d(2,2));
     }
-//    public Animal(IWorldMap map){
-//        this(map, new Vector2d(2,2));
-//    }
+    public Animal(IWorldMap map){
+        this(map, new Vector2d(2,2));
+    }
     public Animal(IWorldMap map, Vector2d initialPosition){
         this.map = map;
         this.position = initialPosition;
@@ -66,7 +66,6 @@ public class Animal implements IMapElement{
         }
     }
     public String getImageName(){
-        System.out.println("zwierze" + this.orientation.toString() + ".jpg");
         return "zwierze" + this.orientation.toString() + ".jpg";
     }
 }

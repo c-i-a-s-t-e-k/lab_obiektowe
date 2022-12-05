@@ -1,5 +1,8 @@
 package agh.ics.oop;
 
+import agh.ics.oop.gui.GuiElementBox;
+import javafx.scene.layout.VBox;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,5 +38,13 @@ abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObserver{
 
     public void positionChanged(Vector2d oldPosition, Vector2d newPosition){
         animals.put(newPosition, animals.remove(oldPosition));
+    }
+
+    public Map<Vector2d, VBox> getVBoxAnimals(){
+        Map<Vector2d, VBox> vBoxAnimals = new HashMap<>();
+        for(Animal animal : animals.values()){
+            vBoxAnimals.put(animal.getPosition(), (new GuiElementBox( animal)).getVBox());
+        }
+        return vBoxAnimals;
     }
 }

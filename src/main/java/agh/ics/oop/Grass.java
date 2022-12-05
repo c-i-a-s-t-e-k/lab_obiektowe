@@ -21,7 +21,6 @@ public class Grass implements IMapElement{
         return "*";
     }
     public String getImageName(){
-        System.out.println("trawa.jpg");
         return "trawa.jpg";
     }
 }

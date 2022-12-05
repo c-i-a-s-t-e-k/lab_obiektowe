@@ -1,5 +1,8 @@
 package agh.ics.oop;
 
+import agh.ics.oop.gui.GuiElementBox;
+import javafx.scene.layout.VBox;
+
 import java.lang.Math;
 import java.util.HashMap;
 import java.util.Map;
@@ -62,4 +65,12 @@ public class GrassField extends AbstractWorldMap{
         }
         else return false;
         }
+
+    public Map<Vector2d, VBox> getVBoxGrasses(){
+        Map<Vector2d, VBox> vBoxAnimals = new HashMap<>();
+        for(Grass grass : grasses.values()){
+            vBoxAnimals.put(grass.getPosition(), (new GuiElementBox( grass)).getVBox());
+        }
+        return vBoxAnimals;
+    }
 }
