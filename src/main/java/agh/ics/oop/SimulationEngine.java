@@ -18,13 +18,10 @@ public class SimulationEngine implements IEngine, Runnable{
     }
 
     public SimulationEngine(MoveDirection[] moves, IWorldMap map, Vector2d[] positions){
-        this(moves,map,positions,1, null);
-    }
-    public SimulationEngine(MoveDirection[] moves, IWorldMap map, Vector2d[] positions, App app){
-        this(moves,map,positions,300, app);
+        this(moves,map,positions,1);
     }
 
-    public SimulationEngine(IWorldMap map, Vector2d[] positions, App app){
+    public SimulationEngine(IWorldMap map, Vector2d[] positions){
         this.map = map;
         this.moveDelay = 300;
 
@@ -33,12 +30,11 @@ public class SimulationEngine implements IEngine, Runnable{
             newAnimal =new Animal(map, position);
             if(this.map.place(newAnimal)){
                 animals.add(newAnimal);
-                if(app != null) newAnimal.addObserver(app);
             }
         }
     }
 
-    public SimulationEngine(MoveDirection[] moves, IWorldMap map, Vector2d[] positions, int moveDelay, App app){
+    public SimulationEngine(MoveDirection[] moves, IWorldMap map, Vector2d[] positions, int moveDelay){
         this.moves = moves;
         this.map = map;
         this.moveDelay = moveDelay;
@@ -48,7 +44,6 @@ public class SimulationEngine implements IEngine, Runnable{
             newAnimal =new Animal(map, position);
             if(this.map.place(newAnimal)){
                 animals.add(newAnimal);
-                if(app != null) newAnimal.addObserver(app);
             }
         }
     }

@@ -6,7 +6,7 @@ import javafx.scene.layout.VBox;
 import java.util.HashMap;
 import java.util.Map;
 
-abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObserver{
+abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObserver, IRectanglableMap{
     protected final Map<Vector2d,Animal> animals = new HashMap<>();
     protected final MapVisualizer mapVisualizer = new  MapVisualizer(this);
     abstract public Vector2d getUpperRight();
