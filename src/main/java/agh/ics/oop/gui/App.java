@@ -109,7 +109,7 @@ public class App extends Application implements IPositionChangeObserver{
 
         mainBox.getChildren().add(gridPane);
         mainBox.getChildren().add(inputBox);
-        Scene scene = new Scene(mainBox, 400, 400);
+        Scene scene = new Scene(mainBox, (width + 3) * sizeOfCell, (height + 2) * sizeOfCell + 50);
 
 
 
@@ -136,6 +136,7 @@ public class App extends Application implements IPositionChangeObserver{
             System.out.println(map);
             if(actualizeGrip()){
                 System.out.println("map have been redrawn");
+                System.out.println("");
             }
         });
     }
