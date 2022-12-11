@@ -1,8 +1,8 @@
-package agh.ics.oop;
-import java.lang.String;
+package agh.ics.oop.engine;
+
 import java.util.Objects;
 
-public class Vector2d{
+public class Vector2d {
     public final int x;
     public final int y;
 
