@@ -15,6 +15,15 @@ public class Genome {
         this.genes = genes;
         this.actualGeneIndex = 0;
     }
+    Genome(){
+        Random random = new Random();
+        int[] genes = new int[Genome.genomeLength];
+        for(int i = 0; i < Genome.genomeLength; i++){
+            genes[i] = random.nextInt() % 8;
+        }
+        this.genes = genes;
+        this.actualGeneIndex = random.nextInt() % Genome.genomeLength;
+    }
 
     public int getGene(){
         int actualGene = genes[actualGeneIndex];
@@ -51,7 +60,7 @@ public class Genome {
             }
         }
         for (Integer index :  indexes){
-            genome.genes[index] = Genome.mutationType.mutateGene(genome.genes[index], Genome.genomeLength);
+            genome.genes[index] = Genome.mutationType.mutateGene(genome.genes[index]);
         }
     }
 

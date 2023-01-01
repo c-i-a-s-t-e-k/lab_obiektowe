@@ -13,7 +13,6 @@ public class Animal extends AbstractMapElement{
 
     public Animal(IWorldMap map, Vector2d initialPosition, Genome genome, int energy){
         this.map = map;
-        this.map.place(this);
         this.position = initialPosition;
         this.energy = energy;
         this.genome = genome;

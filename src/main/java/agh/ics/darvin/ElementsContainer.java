@@ -40,7 +40,9 @@ public class ElementsContainer implements IPositionChangeObserver{
     }
 
     public Animal[] getAnimals(Vector2d position){
-        return animals.get(position).toArray(new Animal[0]);
+        if (animals.containsKey(position))
+            return animals.get(position).toArray(new Animal[0]);
+        else return new Animal[0];
     }
     public Grass getPlant(Vector2d position){
         return plants.getOrDefault(position, null);

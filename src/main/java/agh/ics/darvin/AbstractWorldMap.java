@@ -5,7 +5,7 @@ import java.util.Map;
 
 abstract class AbstractWorldMap implements IWorldMap{
 
-    protected final ElementsContainer container = new ElementsContainer();
+    protected final ElementsContainer container  = new ElementsContainer();
     protected final MapVisualizer mapVisualizer = new  MapVisualizer(this);
     abstract public Vector2d getUpperRight();
     abstract public Vector2d getLowerLeft();
