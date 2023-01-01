@@ -1,4 +1,4 @@
-package agh.ics.oop.engine;
+package agh.ics.darvin;
 
 public interface IMapElement {
     String getImageName();

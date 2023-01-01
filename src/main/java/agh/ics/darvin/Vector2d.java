@@ -1,4 +1,4 @@
-package agh.ics.oop.engine;
+package agh.ics.darvin;
 
 import java.util.Objects;
 

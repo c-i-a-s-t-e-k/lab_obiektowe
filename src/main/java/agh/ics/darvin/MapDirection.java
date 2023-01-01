@@ -1,4 +1,4 @@
-package agh.ics.oop.engine;
+package agh.ics.darvin;
 
 enum MapDirection {
     NORTH (new Vector2d(0,1), "N"),

@@ -1,20 +1,16 @@
-package agh.ics.oop.engine;
+package agh.ics.darvin;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Animal implements IMapElement{
+public class Animal extends AbstractMapElement{
     private MapDirection orientation = MapDirection.NORTH;
     private final IWorldMap map;
     private final List<IPositionChangeObserver> observers = new ArrayList<>();
-    private Vector2d position;
     private int energy;
     private final Genome genome;
 
 
-    public Vector2d getPosition(){
-        return position;
-    }
     public Animal(IWorldMap map, Vector2d initialPosition, Genome genome, int energy){
         this.map = map;
         this.position = initialPosition;

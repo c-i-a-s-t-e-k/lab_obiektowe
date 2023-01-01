@@ -1,9 +1,10 @@
-package agh.ics.oop.engine;
+package agh.ics.darvin;
 
 import java.util.HashMap;
 import java.util.Map;
 
 abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObserver{
+
     protected final Map<Vector2d,Animal> animals = new HashMap<>();
     protected final MapVisualizer mapVisualizer = new  MapVisualizer(this);
     abstract public Vector2d getUpperRight();
@@ -40,4 +41,5 @@ abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObserver{
     public Vector2d getFinalPosition(Vector2d position, MapDirection orientation){
         return position.add(orientation.toUnitVector());
     }
+
 }

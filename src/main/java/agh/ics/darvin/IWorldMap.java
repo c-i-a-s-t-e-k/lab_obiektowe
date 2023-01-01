@@ -1,4 +1,4 @@
-package agh.ics.oop.engine;
+package agh.ics.darvin;
 
 /**
  * The interface responsible for interacting with the map of the world.

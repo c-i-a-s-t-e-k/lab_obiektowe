@@ -1,8 +1,8 @@
-package agh.ics.oop.engine;
+package agh.ics.darvin;
 
 public class World {
     public static void main(String[] args){
-        Genome.genomeInitialization(8);
+//        Genome.genomeInitialization(8);
 
     }
 }
