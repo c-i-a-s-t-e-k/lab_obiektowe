@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class TestGenome {
     @Test
     public void genomeTestSameShare(){
-        Genome.genomeInitialization(4, 0, MutationType.NO_CHANGE);
+        Genome.initGenome(4, 0, MutationType.NO_CHANGE);
         Genome genome1 = new Genome(new int[]{2,2,2,2});
         Genome genome2 = new Genome(new int[]{1,1,1,1});
 
@@ -26,7 +26,7 @@ public class TestGenome {
     }
     @Test
     public void genomeTestDifferentShare(){
-        Genome.genomeInitialization(4, 0, MutationType.NO_CHANGE);
+        Genome.initGenome(4, 0, MutationType.NO_CHANGE);
         Genome genome2 = new Genome(new int[]{2,2,2,2});
         Genome genome1 = new Genome(new int[]{1,1,1,1});
 

@@ -4,13 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Animal extends AbstractMapElement{
+    private static int startEnergy;
+    private static int reproductionCost;
     private MapDirection orientation = MapDirection.NORTH;
     private final IWorldMap map;
     private final List<IPositionChangeObserver> observers = new ArrayList<>();
-    private int energy;
+    private int energy = startEnergy;
     private final Genome genome;
 
+    public static void initAnimal(int startEnergy, int reproductionCost){
+        if (startEnergy > 0)
+            Animal.startEnergy = startEnergy;
+        else
+            throw new IllegalArgumentException("energy must be higher than 0");
+        if (reproductionCost >= 0)
+            Animal.reproductionCost = reproductionCost;
+        else throw new IllegalArgumentException("reproduction cost must be higher than -1");
+    }
 
+    public Animal(IWorldMap map, Vector2d initialPosition, Genome genome){
+        this(map,initialPosition,genome,Animal.startEnergy);
+    }
     public Animal(IWorldMap map, Vector2d initialPosition, Genome genome, int energy){
         this.map = map;
         this.position = initialPosition;
@@ -41,7 +55,7 @@ public class Animal extends AbstractMapElement{
             this.orientation = this.orientation.next();
         }
         Vector2d oldPosition = this.position;
-        this.position = map.getFinalPosition(this.position, this.orientation);
+        this.position = map.getFinalPosition(this);
         this.energy--;
         positionChanged(oldPosition);
     }
@@ -49,6 +63,9 @@ public class Animal extends AbstractMapElement{
         for(IPositionChangeObserver observer : observers){
             observer.positionChanged(oldPosition, this.position, this);
         }
+    }
+    public void decreaseEnergy(){
+        this.energy = this.energy - Animal.reproductionCost;
     }
     public String getImageName(){
         return "";

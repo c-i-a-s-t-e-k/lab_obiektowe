@@ -1,8 +1,5 @@
 package agh.ics.darvin;
 
-import java.util.HashMap;
-import java.util.Map;
-
 abstract class AbstractWorldMap implements IWorldMap{
 
     protected final ElementsContainer container  = new ElementsContainer();
@@ -11,7 +8,7 @@ abstract class AbstractWorldMap implements IWorldMap{
     abstract public Vector2d getLowerLeft();
     @Override
     public boolean place(IMapElement mapElement) {
-        if (canMoveTo(mapElement.getPosition())){
+        if (canPutOn(mapElement.getPosition())){
             if(mapElement instanceof Animal)
                 ((Animal) mapElement).addObserver(this.container);
             container.addElement(mapElement);
@@ -22,15 +19,15 @@ abstract class AbstractWorldMap implements IWorldMap{
         }
 
     }
-    abstract public boolean canMoveTo(Vector2d position);
+    abstract public boolean canPutOn(Vector2d position);
 
     public String toString() {
         return mapVisualizer.draw(getLowerLeft(), getUpperRight());
     }
 
 
-    public Vector2d getFinalPosition(Vector2d position, MapDirection orientation){
-        return position.add(orientation.toUnitVector());
+    public Vector2d getFinalPosition(Animal animal){
+        return animal.getPosition().add(animal.getOrientation().toUnitVector());
     }
 
     @Override

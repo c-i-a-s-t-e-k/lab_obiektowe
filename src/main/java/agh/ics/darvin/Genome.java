@@ -31,7 +31,7 @@ public class Genome {
         return actualGene;
     }
 
-    static public void genomeInitialization(int genomeLength, int mutationNumber, MutationType mutationType){
+    static public void initGenome(int genomeLength, int mutationNumber, MutationType mutationType){
         Genome.mutationType = mutationType;
         if (genomeLength > 0)
             Genome.genomeLength = genomeLength;

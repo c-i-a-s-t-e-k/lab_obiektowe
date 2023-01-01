@@ -15,9 +15,9 @@ public class TestElementsContainer {
     @Test
     public void animalsTest() {
         ElementsContainer container = new ElementsContainer();
-        IWorldMap map = new RectangularMap(5, 5);
+        IWorldMap map = new RectangularMap(5, 5, BoundaryType.PORTAL);
         Vector2d vector2d = new Vector2d(2, 2);
-        Genome.genomeInitialization(4, 0, MutationType.NO_CHANGE);
+        Genome.initGenome(4, 0, MutationType.NO_CHANGE);
         Animal animal1 = new Animal(map, vector2d, new Genome(), 10);
         Animal animal2 = new Animal(map, vector2d, new Genome(), 10);
         container.addElement(animal1);

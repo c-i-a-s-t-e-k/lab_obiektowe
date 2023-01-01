@@ -5,15 +5,17 @@ public class RectangularMap extends AbstractWorldMap{
     public final int height;
     private static final Vector2d lowerLeft = new Vector2d(0, 0);
     private final Vector2d upperRight;
+    private final IBoundary boundary;
 
-    public RectangularMap(int width, int height){
+    public RectangularMap(int width, int height, BoundaryType boundaryType){
         this.width = width;
         this.height = height;
         this.upperRight = new Vector2d(this.width, this.height);
+        this.boundary = boundaryType.getBoundary(this);
     }
 
-    public boolean canMoveTo(Vector2d position) {
-        return (position.precedes(upperRight) && (position.follows(lowerLeft)) && !(isOccupied(position)));
+    public boolean canPutOn(Vector2d position) {
+        return (position.precedes(upperRight) && (position.follows(lowerLeft)));
     }
 
     public Vector2d getLowerLeft(){
@@ -24,9 +26,10 @@ public class RectangularMap extends AbstractWorldMap{
     }
 
     @Override
-    public Vector2d getFinalPosition(Vector2d position, MapDirection orientation) {
-        Vector2d finalPosition = super.getFinalPosition(position, orientation);
-        if(this.canMoveTo(finalPosition)) return finalPosition;
-        else return position;
+    public Vector2d getFinalPosition(Animal animal) {
+        Vector2d finalPosition = super.getFinalPosition(animal);
+        if(this.canPutOn(finalPosition)) return finalPosition;
+        else return this.boundary.backToBoundary(animal);
     }
+
 }
