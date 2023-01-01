@@ -10,6 +10,7 @@ public class MapVisualizer {
     private static final String EMPTY_CELL = " ";
     private static final String FRAME_SEGMENT = "-";
     private static final String CELL_SEGMENT = "|";
+    private static final String MULTIPLE_ELEMENTS = "#";
     private IWorldMap map;
 
     /**
@@ -71,8 +72,16 @@ public class MapVisualizer {
 
     private String drawObject(Vector2d currentPosition) {
         String result = null;
+        IMapElement object = null;
         if (this.map.isOccupied(currentPosition)) {
-            Object object = this.map.objectAt(currentPosition);
+            IMapElement[] elements = this.map.elementsAt(currentPosition);
+            if(elements.length == 1)
+                 object = elements[0];
+            if(elements.length == 2)
+                object = elements[1];
+            if(elements.length > 2)
+                return MULTIPLE_ELEMENTS;
+
             if (object != null) {
                 result = object.toString();
             } else {

@@ -22,4 +22,11 @@ public class RectangularMap extends AbstractWorldMap{
     public Vector2d getUpperRight(){
         return upperRight;
     }
+
+    @Override
+    public Vector2d getFinalPosition(Vector2d position, MapDirection orientation) {
+        Vector2d finalPosition = super.getFinalPosition(position, orientation);
+        if(this.canMoveTo(finalPosition)) return finalPosition;
+        else return position;
+    }
 }

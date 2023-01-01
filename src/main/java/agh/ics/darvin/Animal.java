@@ -13,6 +13,7 @@ public class Animal extends AbstractMapElement{
 
     public Animal(IWorldMap map, Vector2d initialPosition, Genome genome, int energy){
         this.map = map;
+        this.map.place(this);
         this.position = initialPosition;
         this.energy = energy;
         this.genome = genome;
@@ -47,7 +48,7 @@ public class Animal extends AbstractMapElement{
     }
     private void positionChanged(Vector2d oldPosition){
         for(IPositionChangeObserver observer : observers){
-            observer.positionChanged(oldPosition, this.position);
+            observer.positionChanged(oldPosition, this.position, this);
         }
     }
     public String getImageName(){
