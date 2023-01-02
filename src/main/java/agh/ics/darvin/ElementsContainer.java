@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ElementsContainer implements IPositionChangeObserver{
+public class ElementsContainer implements IPositionChangeObserver, IManager{
     private final Map<Vector2d, Plant> plants = new HashMap<>();
     private final Map<Vector2d, List<Animal>> animals = new HashMap<>();
     private final PlantsManager plantsManager = new PlantsManager();
@@ -68,5 +68,15 @@ public class ElementsContainer implements IPositionChangeObserver{
     public void killAnimal(Animal animal){
         this.removeAnimal(animal, animal.getPosition());
         this.animalManager.animalDied(animal);
+    }
+
+    public void addObserver(Object observer){
+        plantsManager.addObserver(observer);
+        animalManager.addObserver(observer);
+    }
+
+    public void removeObserver(Object observer){
+        plantsManager.addObserver(observer);
+        animalManager.removeObserver(observer);
     }
 }

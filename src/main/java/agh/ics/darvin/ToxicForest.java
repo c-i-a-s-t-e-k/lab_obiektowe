@@ -12,6 +12,7 @@ public class ToxicForest extends AbstractForest implements IDeathsObserver{
 
     ToxicForest(RectangularMap map){
         this.map = map;
+        this.map.addObserver(this);
         for (int x = 0; x < this.map.width; x++){
             for (int y = 0; y < this.map.height; y++){
                 Vector2d vector2d = new Vector2d(x,y);

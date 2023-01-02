@@ -8,6 +8,12 @@ public class EquatorialForest extends AbstractForest {
     private final Set<Vector2d> firstCategoryFields;
     private final Set<Vector2d> secondCategoryFields;
 
+    public EquatorialForest(RectangularMap map){
+        this.map = map;
+        this.firstCategoryFields = findFirstCategoryFields();
+        this.secondCategoryFields = findSecondCategoryFields();
+        this.map.addObserver(this);
+    }
 
     private Set<Vector2d> findFirstCategoryFields(){
         int numOfFields = this.map.height * this.map.width;
@@ -39,11 +45,6 @@ public class EquatorialForest extends AbstractForest {
             }
         }
         return secondCategoryFields;
-    }
-    public EquatorialForest(RectangularMap map){
-        this.map = map;
-        this.firstCategoryFields = findFirstCategoryFields();
-        this.secondCategoryFields = findSecondCategoryFields();
     }
 
     @Override
