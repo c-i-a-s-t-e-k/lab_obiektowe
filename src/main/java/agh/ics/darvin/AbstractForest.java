@@ -29,14 +29,14 @@ abstract class AbstractForest implements IForest, IPlantObserver{
         List<Vector2d> places = new ArrayList<>();
         for (Vector2d place : firstCategoryFields)
             if (! this.plantsPositionsInMap.contains(place)) places.add(place);
-        if (places.size() > 0) return places.get(random.nextInt() % places.size());
+        if (places.size() > 0) return places.get(Math.abs(random.nextInt()) % places.size());
         else return null;    }
 
     public Vector2d placeToGrowFirstCategory() {
         List<Vector2d> places = new ArrayList<>();
         for (Vector2d place : firstCategoryFields)
             if (! this.plantsPositionsInMap.contains(place)) places.add(place);
-        if (places.size() > 0) return places.get(random.nextInt() % places.size());
+        if (places.size() > 0) return places.get(Math.abs(random.nextInt()) % places.size());
         else return null;
     }
 }

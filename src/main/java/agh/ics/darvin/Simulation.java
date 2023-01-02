@@ -15,7 +15,7 @@ public class Simulation implements Runnable, IDeathsObserver{
     private final int dailyGrowth;
 
     public Simulation(){
-        this(100, 30, ForestType.EQUATORIAL_FOREST, BoundaryType.PLANET, 300, 10
+        this(20, 10, ForestType.EQUATORIAL_FOREST, BoundaryType.PLANET, 10, 10
                 , 30, 10, 40, 25, 20, 0, 0
                 , MutationType.SLIGHT_CHANGE, 10, BehaviourType.FULL_PREDESTINATION);
     }
@@ -52,7 +52,10 @@ public class Simulation implements Runnable, IDeathsObserver{
     private void tryAddAnimalToFeed(Animal animal){
         Animal other = this.animalsToFeed.getOrDefault(animal.getPosition(), null);
         if (other == null) this.animalsToFeed.put(animal.getPosition(), animal);
-        else if (animal.isStronger(other)) this.animalsToFeed.put(animal.getPosition(), animal);
+        else if (animal.isStronger(other)) {
+            this.animalsToFeed.remove(animal.getPosition());
+            this.animalsToFeed.put(animal.getPosition(), animal);
+        }
     }
     private void moveAnimals(){
         for (Animal animal : animals){
@@ -79,11 +82,19 @@ public class Simulation implements Runnable, IDeathsObserver{
     @Override
     public void run() {
         while (running){
-            killAnimals();
+//            try {
+                killAnimals();
+//            }catch (NullPointerException e){
+//                System.out.println(e.getMessage());
+//                for (Animal animal : deadAnimals)
+//                    System.out.println(animal.getPosition().toString());
+//                stopSimulation();
+//            }
             moveAnimals();
             eatPlants();
             animalsReproduction();
             plantsGrowth();
+            System.out.println(this.map);
         }
     }
     public void stopSimulation(){

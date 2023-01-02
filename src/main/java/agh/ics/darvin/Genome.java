@@ -22,10 +22,10 @@ public class Genome {
         Random random = new Random();
         int[] genes = new int[Genome.genomeLength];
         for(int i = 0; i < Genome.genomeLength; i++){
-            genes[i] = random.nextInt() % 8;
+            genes[i] = Math.abs(random.nextInt()) % 8;
         }
         this.genes = genes;
-        this.actualGeneIndex = random.nextInt() % Genome.genomeLength;
+        this.actualGeneIndex = Math.abs(random.nextInt()) % Genome.genomeLength;
     }
 
     public int getGene(){

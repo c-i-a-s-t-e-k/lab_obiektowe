@@ -16,8 +16,8 @@ public enum BehaviourType {
 
     private int getSomeMadness(int i, int n){
         if(random.nextInt() % 100 < 80){
-            return (i++) % n;
+            return (i+1) % n;
         }
-        else return random.nextInt() % n;
+        else return (Math.abs(random.nextInt()) % n);
     }
 }

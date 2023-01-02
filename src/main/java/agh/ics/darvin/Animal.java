@@ -1,8 +1,5 @@
 package agh.ics.darvin;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Animal extends AbstractMapElement{
     private AnimalManager manager;
     private static int startEnergy;
@@ -12,7 +9,7 @@ public class Animal extends AbstractMapElement{
     private MapDirection orientation = MapDirection.NORTH;
     private final IWorldMap map;
     private int energy;
-    private int childs = 0;
+    private int children = 0;
     private int days = 0;
     private final Genome genome;
 
@@ -24,9 +21,9 @@ public class Animal extends AbstractMapElement{
         if (minimalEnergyToReproduction > 0)
             Animal.minimalEnergyToReproduction = minimalEnergyToReproduction;
         else throw new IllegalArgumentException("minimal energy to couple must be higher than 0");
-        if (reproductionCost > minimalEnergyToReproduction)
+        if (reproductionCost < minimalEnergyToReproduction)
             Animal.reproductionCost = reproductionCost;
-        else throw new IllegalArgumentException("reproduction cost ust be higher than minimal value " + minimalEnergyToReproduction);
+        else throw new IllegalArgumentException("reproduction cost must be lower than minimal value " + minimalEnergyToReproduction);
         if (energyFromPlant > 0)
             Animal.energyFromPlant = energyFromPlant;
         else throw new IllegalArgumentException("energy provided by plant must be higher than 0");
@@ -78,8 +75,8 @@ public class Animal extends AbstractMapElement{
     public Animal reproduce(Animal other){
         if (! (this.canReproduce() && other.canReproduce()))
             throw new IllegalArgumentException("those animals can not couple");
-        this.childs ++;
-        other.childs ++;
+        this.children++;
+        other.children++;
         Genome genome = Genome.genomeCreation(this.genome, this.energy, other.genome, other.energy);
         this.energy -= Animal.reproductionCost;
         other.energy -= Animal.reproductionCost;
@@ -104,7 +101,7 @@ public class Animal extends AbstractMapElement{
     public boolean isStronger(Animal animal){
         if(this.energy == animal.energy)
             if (this.days == animal.days)
-                return this.childs > animal.childs;
+                return this.children > animal.children;
             else return this.days > animal.days;
         else return this.energy > animal.energy;
     }

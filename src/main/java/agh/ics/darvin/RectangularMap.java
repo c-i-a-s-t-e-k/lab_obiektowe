@@ -88,7 +88,8 @@ public class RectangularMap implements IWorldMap, IManager{
     public void feedAnimal(Animal animal){
         Plant plant = plantAt(animal.getPosition());
         if (plant == null)
-            throw new IllegalArgumentException("animal cannot eat, there is no grass here" + animal.getPosition());
+            return;
+//            throw new IllegalArgumentException("animal cannot eat, there is no grass here" + animal.getPosition());
         this.container.removePlant(plant);
         animal.feed();
     }

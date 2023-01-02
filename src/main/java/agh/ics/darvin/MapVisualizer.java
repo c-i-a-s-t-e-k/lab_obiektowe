@@ -77,11 +77,8 @@ public class MapVisualizer {
             IMapElement[] elements = this.map.elementsAt(currentPosition);
             if(elements.length == 1)
                  object = elements[0];
-            if(elements.length == 2)
-                object = elements[1];
             if(elements.length > 2)
                 return MULTIPLE_ELEMENTS;
-
             if (object != null) {
                 result = object.toString();
             } else {

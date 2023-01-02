@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c5bf65ea-ace4-4fb9-b093-e38929e3013b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/Simulation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/AbstractForest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/AbstractForest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/ElementsContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/ElementsContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/BehaviourType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/BehaviourType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/Genome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/Genome.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/RectangularMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/RectangularMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/Simulation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/World.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +22,16 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view />
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -58,7 +69,20 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Tests in 'darvin.test'">
+  <component name="RunManager" selected="Application.World">
+    <configuration name="World" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="agh.ics.darvin.World" />
+      <module name="darvin.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="agh.ics.darvin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TestElementsContainer" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -96,29 +120,6 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;agh.ics.darvin.TestElementsContainer.addingTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="TestMutationType" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;agh.ics.darvin.TestMutationType&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -174,11 +175,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.World" />
         <item itemvalue="Gradle.Tests in 'darvin.test'" />
         <item itemvalue="Gradle.TestElementsContainer" />
         <item itemvalue="Gradle.TestElementsContainer.addingTest" />
         <item itemvalue="Gradle.TestMutationType.slightChangeTest" />
-        <item itemvalue="Gradle.TestMutationType" />
       </list>
     </recent_temporary>
   </component>
