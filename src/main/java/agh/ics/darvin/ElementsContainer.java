@@ -56,6 +56,31 @@ public class ElementsContainer implements IPositionChangeObserver, IManager{
             return animals.get(position).toArray(new Animal[0]);
         else return new Animal[0];
     }
+    private Animal[] getCouple(Iterable<Animal> animalIterable){
+        Animal[] couple = new Animal[] {null, null};
+        for (Animal animal : animalIterable){
+            if (couple[0] == null) couple[0] = animal;
+            else if (couple[1] == null) couple[1] = animal;
+            else {
+                if (animal.isStronger(couple[0])) couple[0] = animal;
+                if (animal != couple[0] && animal.isStronger(couple[1])) couple[1] = animal;
+            }
+        }
+        if (couple[0].canReproduce() && couple[1].canReproduce())
+            return couple;
+        else return null;
+    }
+    public Iterable<Animal[]> getCouples(){
+        List<Animal[]> couples = new ArrayList<>();
+        for (List<Animal> animalList : this.animals.values()){
+            if (animalList.size() >= 2) {
+                Animal[] couple = getCouple(animalList);
+                if (couple != null)
+                    couples.add(couple);
+            }
+        }
+        return couples;
+    }
     public Plant getPlant(Vector2d position){
         return plants.getOrDefault(position, null);
     }
@@ -63,11 +88,6 @@ public class ElementsContainer implements IPositionChangeObserver, IManager{
     public void positionChanged(Vector2d oldPosition, Vector2d newPosition, Animal animal){
         removeAnimal(animal, oldPosition);
         addAnimal(animal);
-    }
-
-    public void killAnimal(Animal animal){
-        this.removeAnimal(animal, animal.getPosition());
-        this.animalManager.animalDied(animal);
     }
 
     public void addObserver(Object observer){

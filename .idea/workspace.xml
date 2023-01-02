@@ -5,15 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c5bf65ea-ace4-4fb9-b093-e38929e3013b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/BehaviourType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/Simulation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/AbstractForest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/AbstractForest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/EquatorialForest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/EquatorialForest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/ForestType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/ForestType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/ElementsContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/ElementsContainer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/Genome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/Genome.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/RectangularMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/RectangularMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/ToxicForest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/ToxicForest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/agh/ics/darvin/TestElementsContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/agh/ics/darvin/TestElementsContainer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,9 +25,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>

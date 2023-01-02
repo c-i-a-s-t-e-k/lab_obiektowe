@@ -6,9 +6,11 @@ import java.util.Set;
 
 public class Genome {
     static private int genomeLength;
-    static private int mutationNumber;
+    static private int minMutationNumber;
+    static private int maxMutationNumber;
     static private MutationType mutationType;
     static private BehaviourType behaviourType;
+    static private final Random random = new Random();
     private int actualGeneIndex;
     private final int[] genes;
 
@@ -31,18 +33,29 @@ public class Genome {
         this.actualGeneIndex = behaviourType.getNextIndex(this.actualGeneIndex, Genome.genomeLength);
         return actualGene;
     }
+    static public void initGenome(int genomeLength, int maxMutationNumber, MutationType mutationType, BehaviourType behaviourType){
+        Genome.initGenome(genomeLength, 0, maxMutationNumber, mutationType, behaviourType);
+    }
 
-    static public void initGenome(int genomeLength, int mutationNumber, MutationType mutationType, BehaviourType behaviourType){
+    static public void initGenome(int genomeLength,int minMutationNumber, int maxMutationNumber, MutationType mutationType, BehaviourType behaviourType){
         Genome.mutationType = mutationType;
         Genome.behaviourType = behaviourType;
+        if (maxMutationNumber < minMutationNumber)
+            throw new IllegalArgumentException("minimal mutation number must be equal or lower than maximal mutation number");
         if (genomeLength > 0)
             Genome.genomeLength = genomeLength;
         else
             throw new IllegalArgumentException("genome length must be higher than 0");
-        if (mutationNumber >= 0)
-            Genome.mutationNumber = mutationNumber;
-        else
-            throw new IllegalArgumentException("number of mutation must be 0 or higher");
+        if (minMutationNumber >= 0){
+            Genome.minMutationNumber = minMutationNumber;
+            Genome.maxMutationNumber = maxMutationNumber;
+        }
+        else throw new IllegalArgumentException("number of mutation must be 0 or higher");
+    }
+
+    static private int getMutationNumber(){
+        if(Genome.minMutationNumber == Genome.maxMutationNumber) return 0;
+        else return (random.nextInt() % (Genome.maxMutationNumber - Genome.minMutationNumber)) + Genome.minMutationNumber;
     }
     static private int genesFromShare(int share1, int share2){
         int tmp = Math.min(share1, share2);
@@ -54,7 +67,7 @@ public class Genome {
         Random random = new Random();
         Set<Integer> indexes = new HashSet<>();
         int i = 0;
-        while (i < Genome.mutationNumber){
+        while (i < Genome.getMutationNumber()){
             Integer newIndex = random.nextInt();
             if (! indexes.contains(newIndex)) {
                 indexes.add(newIndex);

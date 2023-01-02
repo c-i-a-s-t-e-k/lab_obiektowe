@@ -1,5 +1,8 @@
 package agh.ics.darvin;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RectangularMap implements IWorldMap, IManager{
     public final int width;
     public final int height;
@@ -45,7 +48,14 @@ public class RectangularMap implements IWorldMap, IManager{
         else {
             throw new IllegalArgumentException("cannot place animal on position:" + mapElement.getPosition());
         }
-
+    }
+    public void remove(IMapElement mapElement){
+        this.container.removeElement(mapElement);
+    }
+    public void seedPlant(){
+        Vector2d position = forest.placeToGrow();
+        if(position != null)
+            place(new Plant(position));
     }
 
     public String toString() {
@@ -71,6 +81,23 @@ public class RectangularMap implements IWorldMap, IManager{
             System.arraycopy(animals, 0, elements, 1, elements.length - 1);
             return elements;
         }
+    }
+    public Plant plantAt(Vector2d position){
+        return this.container.getPlant(position);
+    }
+    public void feedAnimal(Animal animal){
+        Plant plant = plantAt(animal.getPosition());
+        if (plant == null)
+            throw new IllegalArgumentException("animal cannot eat, there is no grass here" + animal.getPosition());
+        this.container.removePlant(plant);
+        animal.feed();
+    }
+    public Iterable<Animal> genderAnimals(){
+        List<Animal> children = new ArrayList<>();
+        for (Animal[] couple : this.container.getCouples()){
+            children.add(couple[0].reproduce(couple[1]));
+        }
+        return children;
     }
 
     private boolean canBeObserver(Object observer){
