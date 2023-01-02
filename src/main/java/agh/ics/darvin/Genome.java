@@ -8,6 +8,7 @@ public class Genome {
     static private int genomeLength;
     static private int mutationNumber;
     static private MutationType mutationType;
+    static private BehaviourType behaviourType;
     private int actualGeneIndex;
     private final int[] genes;
 
@@ -27,12 +28,13 @@ public class Genome {
 
     public int getGene(){
         int actualGene = genes[actualGeneIndex];
-        actualGeneIndex++;
+        this.actualGeneIndex = behaviourType.getNextIndex(this.actualGeneIndex, Genome.genomeLength);
         return actualGene;
     }
 
-    static public void initGenome(int genomeLength, int mutationNumber, MutationType mutationType){
+    static public void initGenome(int genomeLength, int mutationNumber, MutationType mutationType, BehaviourType behaviourType){
         Genome.mutationType = mutationType;
+        Genome.behaviourType = behaviourType;
         if (genomeLength > 0)
             Genome.genomeLength = genomeLength;
         else

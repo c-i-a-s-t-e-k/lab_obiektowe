@@ -6,14 +6,16 @@ public class RectangularMap implements IWorldMap, IManager{
     private static final Vector2d lowerLeft = new Vector2d(0, 0);
     private final Vector2d upperRight;
     private final IBoundary boundary;
+    private  final IForest forest;
     private final ElementsContainer container  = new ElementsContainer();
     private final MapVisualizer mapVisualizer = new  MapVisualizer(this);
 
-    public RectangularMap(int width, int height, BoundaryType boundaryType){
+    public RectangularMap(int width, int height, BoundaryType boundaryType, ForestType forestType){
         this.width = width;
         this.height = height;
         this.upperRight = new Vector2d(this.width, this.height);
         this.boundary = boundaryType.getBoundary(this);
+        this.forest = forestType.getForest(this);
     }
 
     public boolean canPutOn(Vector2d position) {

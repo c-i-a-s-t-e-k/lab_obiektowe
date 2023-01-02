@@ -5,8 +5,6 @@ import java.util.*;
 public class ToxicForest extends AbstractForest implements IDeathsObserver{
 
     private final Map<Vector2d, ToxicField> fields = new HashMap<>();
-    private final Vector2d[] firstCategoryFields;
-    private final Vector2d[] secondCategoryFields;
     private final RectangularMap map;
     private final int numOfFirstCategoryFields;
 
@@ -22,8 +20,8 @@ public class ToxicForest extends AbstractForest implements IDeathsObserver{
         int numOfFields = this.map.height * this.map.width;
         this.numOfFirstCategoryFields = (int)(numOfFields * 0.8);
 
-        this.firstCategoryFields = new Vector2d[numOfFirstCategoryFields];
-        this.secondCategoryFields = new Vector2d[numOfFields - numOfFirstCategoryFields];
+        this.firstCategoryFields = new ArrayList<>();
+        this.secondCategoryFields = new ArrayList<>();
         setFieldsArrays();
     }
     private void setFieldsArrays(){
@@ -38,31 +36,14 @@ public class ToxicForest extends AbstractForest implements IDeathsObserver{
     private void setFirstCategoryFields(){
         ToxicField[] fields = getSortedFields();
         for (int i = 0; i < numOfFirstCategoryFields; i++){
-            this.firstCategoryFields[i] = fields[i].getPosition();
+            ((List<Vector2d>) this.firstCategoryFields).add(fields[i].getPosition());
         }
     }
     private void setSecondCategoryFields(){
         ToxicField[] fields = getSortedFields();
         for (int i = numOfFirstCategoryFields; i < fields.length; i++){
-            this.secondCategoryFields[i - numOfFirstCategoryFields] = fields[i].getPosition();
+            ((List<Vector2d>) this.firstCategoryFields).add(fields[i].getPosition());
         }
-    }
-    @Override
-    public Vector2d placeToGrowFirstCategory() {
-        List<Vector2d> places = new ArrayList<>();
-        for (Vector2d place : firstCategoryFields)
-            if (! this.plantsPositionsInMap.contains(place)) places.add(place);
-        if (places.size() > 0) return places.get(random.nextInt() % places.size());
-        else return null;
-    }
-
-    @Override
-    public Vector2d placeToGrowSecondCategory() {
-        List<Vector2d> places = new ArrayList<>();
-        for (Vector2d place : secondCategoryFields)
-            if (! this.plantsPositionsInMap.contains(place)) places.add(place);
-        if (places.size() > 0) return places.get(random.nextInt() % places.size());
-        else return null;
     }
 
     @Override

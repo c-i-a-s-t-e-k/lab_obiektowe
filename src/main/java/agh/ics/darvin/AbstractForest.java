@@ -1,10 +1,10 @@
 package agh.ics.darvin;
 
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 abstract class AbstractForest implements IForest, IPlantObserver{
+    protected Iterable<Vector2d> firstCategoryFields;
+    protected Iterable<Vector2d> secondCategoryFields;
     protected final Set<Vector2d> plantsPositionsInMap = new HashSet<>();
     protected final Random random = new Random();
     @Override
@@ -25,6 +25,18 @@ abstract class AbstractForest implements IForest, IPlantObserver{
     public void plantAdd(Vector2d position) {
         this.plantsPositionsInMap.add(position);
     }
-    abstract public Vector2d placeToGrowFirstCategory();
-    abstract public Vector2d placeToGrowSecondCategory();
+    public Vector2d placeToGrowSecondCategory() {
+        List<Vector2d> places = new ArrayList<>();
+        for (Vector2d place : firstCategoryFields)
+            if (! this.plantsPositionsInMap.contains(place)) places.add(place);
+        if (places.size() > 0) return places.get(random.nextInt() % places.size());
+        else return null;    }
+
+    public Vector2d placeToGrowFirstCategory() {
+        List<Vector2d> places = new ArrayList<>();
+        for (Vector2d place : firstCategoryFields)
+            if (! this.plantsPositionsInMap.contains(place)) places.add(place);
+        if (places.size() > 0) return places.get(random.nextInt() % places.size());
+        else return null;
+    }
 }

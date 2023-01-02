@@ -5,9 +5,11 @@ public enum ForestType {
     EQUATORIAL_FOREST;
 
     public IForest getForest(RectangularMap map){
-        return switch (this){
-            case TOXIC_FOREST -> new ToxicForest(map);
-            case EQUATORIAL_FOREST -> new EquatorialForest(map);
-        };
+        IForest forest = null;
+        switch (this){
+            case TOXIC_FOREST -> {forest = new ToxicForest(map); map.addObserver(forest);}
+            case EQUATORIAL_FOREST -> forest = new EquatorialForest(map);
+        }
+        return forest;
     }
 }

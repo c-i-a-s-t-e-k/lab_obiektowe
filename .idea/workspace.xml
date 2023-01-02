@@ -5,19 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c5bf65ea-ace4-4fb9-b093-e38929e3013b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/AnimalManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/EquatorialForest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/IDeathsObserver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/IPlantObserver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/PlantsManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/ToxicField.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/ToxicForest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/BehaviourType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/AbstractWorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/AbstractWorldMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/ElementsContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/ElementsContainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/Grass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/Plant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/IForest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/IForest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/AbstractForest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/AbstractForest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/EquatorialForest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/EquatorialForest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/ForestType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/ForestType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/Genome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/Genome.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/RectangularMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/RectangularMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/ToxicForest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/darvin/ToxicForest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/agh/ics/darvin/TestElementsContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/agh/ics/darvin/TestElementsContainer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,9 +28,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -66,19 +61,29 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.TestElementsContainer.addingTest">
-    <configuration name="World" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="agh.ics.oop.engine.World" />
-      <module name="darvin.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="agh.ics.oop.engine.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+  <component name="RunManager" selected="Gradle.Tests in 'darvin.test'">
+    <configuration name="TestElementsContainer" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;agh.ics.darvin.TestElementsContainer&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
     <configuration name="TestElementsContainer.addingTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -172,11 +177,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.TestElementsContainer.addingTest" />
         <item itemvalue="Gradle.Tests in 'darvin.test'" />
+        <item itemvalue="Gradle.TestElementsContainer" />
+        <item itemvalue="Gradle.TestElementsContainer.addingTest" />
         <item itemvalue="Gradle.TestMutationType.slightChangeTest" />
         <item itemvalue="Gradle.TestMutationType" />
-        <item itemvalue="Application.World" />
       </list>
     </recent_temporary>
   </component>
