@@ -3,11 +3,15 @@ package agh.ics.darvin;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.logging.Handler;
+
 public class TestElementsContainer {
     @Test
     public void addingTest(){
         ElementsContainer container = new ElementsContainer();
-        Grass grass = new Grass(new Vector2d(0,0));
+        Plant grass = new Plant(new Vector2d(0,0));
         container.addElement(grass);
         Assertions.assertEquals(grass, container.getPlant(new Vector2d(0,0)));
     }

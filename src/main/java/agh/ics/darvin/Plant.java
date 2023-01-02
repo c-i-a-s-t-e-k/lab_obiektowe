@@ -1,7 +1,11 @@
 package agh.ics.darvin;
 
-public class Grass extends AbstractMapElement{
-    public Grass(Vector2d position){
+import java.util.ArrayList;
+import java.util.List;
+
+public class Plant extends AbstractMapElement{
+
+    public Plant(Vector2d position){
         this.position = position;
     }
 

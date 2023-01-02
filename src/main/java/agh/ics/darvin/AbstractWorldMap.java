@@ -9,8 +9,6 @@ abstract class AbstractWorldMap implements IWorldMap{
     @Override
     public boolean place(IMapElement mapElement) {
         if (canPutOn(mapElement.getPosition())){
-            if(mapElement instanceof Animal)
-                ((Animal) mapElement).addObserver(this.container);
             container.addElement(mapElement);
             return true;
         }
@@ -37,7 +35,7 @@ abstract class AbstractWorldMap implements IWorldMap{
 
     @Override
     public IMapElement[] elementsAt(Vector2d position) {
-        Grass plant = this.container.getPlant(position);
+        Plant plant = this.container.getPlant(position);
         IMapElement[] animals = this.container.getAnimals(position);
         if(plant == null){
             return animals;

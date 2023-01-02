@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Animal extends AbstractMapElement{
+    private AnimalManager manager;
     private static int startEnergy;
     private static int reproductionCost;
     private MapDirection orientation = MapDirection.NORTH;
     private final IWorldMap map;
-    private final List<IPositionChangeObserver> observers = new ArrayList<>();
     private int energy = startEnergy;
     private final Genome genome;
 
@@ -32,12 +32,7 @@ public class Animal extends AbstractMapElement{
         this.genome = genome;
     }
 
-    public void addObserver(IPositionChangeObserver observer){
-        observers.add(observer);
-    }
-    public void removeObserver(IPositionChangeObserver observer){
-        observers.remove(observer);
-    }
+
     public MapDirection getOrientation(){
         return this.orientation;
     }
@@ -59,15 +54,17 @@ public class Animal extends AbstractMapElement{
         this.energy--;
         positionChanged(oldPosition);
     }
+
     private void positionChanged(Vector2d oldPosition){
-        for(IPositionChangeObserver observer : observers){
-            observer.positionChanged(oldPosition, this.position, this);
-        }
+        this.manager.animalChangedPosition(oldPosition, this);
     }
     public void decreaseEnergy(){
         this.energy = this.energy - Animal.reproductionCost;
     }
     public String getImageName(){
         return "";
+    }
+    public void setManager(AnimalManager manager){
+        this.manager = manager;
     }
 }
