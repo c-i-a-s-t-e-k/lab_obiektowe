@@ -1,9 +1,6 @@
 package agh.ics.darvin.gui;
 
-import agh.ics.darvin.Config;
-import agh.ics.darvin.IMapUpdateObserver;
-import agh.ics.darvin.IWorldMap;
-import agh.ics.darvin.Simulation;
+import agh.ics.darvin.*;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -14,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
@@ -22,6 +21,7 @@ public class SimulationView implements IMapUpdateObserver {
     private final Config config;
     Simulation simulation;
     private GridPane grid;
+    private LineChart<Number, Number> lineChart;
 
     public SimulationView(Config config) {
         this.config = config;
@@ -29,15 +29,26 @@ public class SimulationView implements IMapUpdateObserver {
     }
 
 
-    private void render_refresh() {
+    private void render_refresh(IWorldMap map) {
         // clean
-        for (var e:grid.getChildren()) {
+        for (var e : grid.getChildren()) {
             grid.getChildren().remove(e);
         }
 
-        for (var a : simulation.getAnimals()) {
-            var pos = a.getPosition();
-            grid.add(new Circle(), pos.x, pos.y);
+        for (int x = 0; x < config.width; x++) {
+            for (int y = 0; y < config.height; y++) {
+                Vector2d position = new Vector2d(x, y);
+                if (map.isOccupied(position)) {
+                    IMapElement[] elements = map.elementsAt(position);
+                    for (var e : elements) {
+                        grid.add(e.get_representation(), x, y);
+                    }
+                    System.out.println("Drawing at " + position.toString());
+                }
+                else {
+                    grid.add(new Circle(), x, y);
+                }
+            }
         }
     }
 
@@ -50,13 +61,13 @@ public class SimulationView implements IMapUpdateObserver {
         final NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("Number of Month");
         //creating the chart
-        final LineChart<Number, Number> lineChart =
+        this.lineChart =
                 new LineChart<Number, Number>(xAxis, yAxis);
 
-        lineChart.setTitle("Stock Monitoring, 2010");
+        lineChart.setTitle("Stats");
         //defining a series
         XYChart.Series series = new XYChart.Series();
-        series.setName("My portfolio");
+        series.setName("Plant population");
         //populating the series with data
         series.getData().add(new XYChart.Data(1, 23));
         series.getData().add(new XYChart.Data(2, 14));
@@ -81,6 +92,7 @@ public class SimulationView implements IMapUpdateObserver {
         vbox.setAlignment(Pos.CENTER);
 
         var hbox = new HBox(vbox, grid);
+        hbox.setAlignment(Pos.CENTER);
         stage.setTitle("Simulation");
         stage.setScene(new Scene(hbox, 450, 450));
         stage.show();
@@ -93,7 +105,7 @@ public class SimulationView implements IMapUpdateObserver {
     @Override
     public void mapChanged(IWorldMap map) {
         Platform.runLater(() -> {
-            render_refresh();
+            render_refresh(map);
         });
     }
 

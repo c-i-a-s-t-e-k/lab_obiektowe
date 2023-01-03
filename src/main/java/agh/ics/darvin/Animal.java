@@ -1,5 +1,12 @@
 package agh.ics.darvin;
 
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Shape;
+
+import static java.lang.Double.max;
+import static java.lang.Double.min;
+
 public class Animal extends AbstractMapElement{
     private AnimalManager manager;
     private static int startEnergy;
@@ -95,6 +102,12 @@ public class Animal extends AbstractMapElement{
     public String getImageName(){
         return "";
     }
+
+    @Override
+    public Shape get_representation() {
+        return new Circle(5, Color.color(min(energy/100.0, 1), min(energy/10, 1), min(energy, 1)));
+    }
+
     public void setManager(AnimalManager manager){
         this.manager = manager;
     }

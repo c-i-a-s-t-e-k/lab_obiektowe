@@ -110,6 +110,12 @@ public class Simulation implements Runnable, IDeathsObserver {
     public void run() {
         while (running) {
             single_step();
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                System.out.println("Simulation: interrupted");
+                return;
+            }
         }
     }
 
