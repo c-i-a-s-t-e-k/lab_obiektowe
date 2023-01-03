@@ -1,6 +1,6 @@
 package agh.ics.darvin.gui;
 
-import agh.ics.darvin.Config;
+import agh.ics.darvin.config.Config;
 import agh.ics.darvin.InvalidConfigException;
 import agh.ics.darvin.enums.MutationType;
 import agh.ics.darvin.enums.*;
@@ -15,11 +15,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

@@ -5,6 +5,6 @@ import javafx.scene.shape.Shape;
 public interface IMapElement {
     String getImageName();
     Vector2d getPosition();
-    Shape get_representation(CanSetAnimal setAnimal);
+    Shape get_representation(SetAnimalTarget setAnimal);
 
 }

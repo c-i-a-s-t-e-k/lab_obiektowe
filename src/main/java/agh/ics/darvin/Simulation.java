@@ -1,9 +1,6 @@
 package agh.ics.darvin;
 
-import agh.ics.darvin.enums.BehaviourType;
-import agh.ics.darvin.enums.BoundaryType;
-import agh.ics.darvin.enums.ForestType;
-import agh.ics.darvin.enums.MutationType;
+import agh.ics.darvin.config.Config;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,14 +20,14 @@ public class Simulation implements Runnable, IDeathsObserver {
 
     public Simulation(IMapUpdateObserver parent, Config config){
         this.parent = parent;
-        Animal.initAnimal(config.startEnergy, config.energyCost, config.minEnergy, config.energyFromPlant);
-        Genome.initGenome(config.genomeLength, config.maxMutationNum, config.minMutationNum, config.mutationType, config.behaviourType);
+//        Animal.initAnimal(config.startEnergy, config.energyCost, config.minEnergy, config.energyFromPlant);
+//        Genome.initGenome(config.genomeLength, config.maxMutationNum, config.minMutationNum, config.mutationType, config.behaviourType);
         this.map = new RectangularMap(config.width, config.height, config.boundaryType, config.forestType);
         for (int i = 0; i < config.plantsNum; i++) {
             this.map.seedPlant();
         }
         for (int i = 0; i < config.animalNum; i++) {
-            Animal newAnimal = new Animal(this.map);
+            Animal newAnimal = new Animal(this.map, config);
             animals.add(newAnimal);
             this.map.place(newAnimal);
         }

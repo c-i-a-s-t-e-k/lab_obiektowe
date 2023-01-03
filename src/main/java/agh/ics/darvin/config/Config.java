@@ -1,11 +1,12 @@
-package agh.ics.darvin;
+package agh.ics.darvin.config;
 
+import agh.ics.darvin.InvalidConfigException;
 import agh.ics.darvin.enums.BehaviourType;
 import agh.ics.darvin.enums.BoundaryType;
 import agh.ics.darvin.enums.ForestType;
 import agh.ics.darvin.enums.MutationType;
 
-public class Config {
+public class Config implements AnimalConfig, GenomeConfig {
     public final int width;
     public final int height;
     public final ForestType forestType;
@@ -50,5 +51,50 @@ public class Config {
         if (genomeLength < 1) throw new InvalidConfigException("Genome length cannot be negative");
         this.genomeLength = genomeLength;
         this.behaviourType = behaviourType;
+    }
+
+    @Override
+    public int getStartEnergy() {
+        return startEnergy;
+    }
+
+    @Override
+    public int getEnergyFromPlant() {
+        return energyFromPlant;
+    }
+
+    @Override
+    public int getMinimalEnergyToReproduction() {
+        return minEnergy;
+    }
+
+    @Override
+    public int getReproductionCost() {
+        return energyCost;
+    }
+
+    @Override
+    public int get_genomeLength() {
+        return genomeLength;
+    }
+
+    @Override
+    public int get_minMutationNumber() {
+        return minMutationNum;
+    }
+
+    @Override
+    public int get_maxMutationNumber() {
+        return maxMutationNum;
+    }
+
+    @Override
+    public MutationType get_mutationType() {
+        return mutationType;
+    }
+
+    @Override
+    public BehaviourType get_behaviourType() {
+        return behaviourType;
     }
 }

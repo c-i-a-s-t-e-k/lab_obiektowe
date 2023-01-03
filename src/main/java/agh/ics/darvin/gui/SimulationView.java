@@ -1,6 +1,7 @@
 package agh.ics.darvin.gui;
 
 import agh.ics.darvin.*;
+import agh.ics.darvin.config.Config;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -10,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -18,9 +18,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
-public class SimulationView implements IMapUpdateObserver, CanSetAnimal {
+public class SimulationView implements IMapUpdateObserver, SetAnimalTarget {
     private boolean paused = false;
     private final Config config;
     Simulation simulation;

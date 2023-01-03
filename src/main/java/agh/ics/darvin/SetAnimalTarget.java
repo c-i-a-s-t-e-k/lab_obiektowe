@@ -1,5 +1,5 @@
 package agh.ics.darvin;
 
-public interface CanSetAnimal {
+public interface SetAnimalTarget {
     public void setAnimal(Animal animal);
 }
