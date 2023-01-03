@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Simulation implements Runnable, IDeathsObserver {
+    private final Config config;
     private boolean running = true;
     private final RectangularMap map;
     private final List<Animal> animals = new ArrayList<>();
@@ -19,9 +20,8 @@ public class Simulation implements Runnable, IDeathsObserver {
 
 
     public Simulation(IMapUpdateObserver parent, Config config){
+        this.config = config;
         this.parent = parent;
-//        Animal.initAnimal(config.startEnergy, config.energyCost, config.minEnergy, config.energyFromPlant);
-//        Genome.initGenome(config.genomeLength, config.maxMutationNum, config.minMutationNum, config.mutationType, config.behaviourType);
         this.map = new RectangularMap(config.width, config.height, config.boundaryType, config.forestType);
         for (int i = 0; i < config.plantsNum; i++) {
             this.map.seedPlant();
@@ -82,7 +82,7 @@ public class Simulation implements Runnable, IDeathsObserver {
         while (running) {
             single_step();
             try {
-                Thread.sleep(500);
+                Thread.sleep(config.sleepTime);
             } catch (InterruptedException e) {
                 System.out.println("Simulation: interrupted");
                 return;

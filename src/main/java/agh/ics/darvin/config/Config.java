@@ -23,8 +23,9 @@ public class Config implements AnimalConfig, GenomeConfig {
     public final MutationType mutationType;
     public final int genomeLength;
     public final BehaviourType behaviourType;
+    public final int sleepTime;
 
-    public Config(int width, int height, ForestType forestType, BoundaryType boundaryType, int plantsNum, int energyFromPlant, int dailyGrowth, int animalNum, int startEnergy, int minEnergy, int energyCost, int minMutationNum, int maxMutationNum, MutationType mutationType, int genomeLength, BehaviourType behaviourType) throws InvalidConfigException {
+    public Config(int width, int height, ForestType forestType, BoundaryType boundaryType, int plantsNum, int energyFromPlant, int dailyGrowth, int animalNum, int startEnergy, int minEnergy, int energyCost, int minMutationNum, int maxMutationNum, MutationType mutationType, int genomeLength, BehaviourType behaviourType, int sleepTime) throws InvalidConfigException {
         if (width < 2) throw new InvalidConfigException("Width is too small");
         this.width = width;
         if (height < 2) throw new InvalidConfigException("Height is too small");
@@ -51,6 +52,9 @@ public class Config implements AnimalConfig, GenomeConfig {
         if (genomeLength < 1) throw new InvalidConfigException("Genome length cannot be negative");
         this.genomeLength = genomeLength;
         this.behaviourType = behaviourType;
+        if (sleepTime < 0)
+            throw  new InvalidConfigException("Sleep time cannot be negative");
+        this.sleepTime = sleepTime;
     }
 
     @Override

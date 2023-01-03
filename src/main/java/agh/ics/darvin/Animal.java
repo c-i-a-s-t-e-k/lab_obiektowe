@@ -13,40 +13,17 @@ import static java.lang.Double.min;
 
 public class Animal extends AbstractMapElement{
     private AnimalManager manager;
-    private AnimalConfig config;
-//    private static int startEnergy;
-//    private static int energyFromPlant;
-//    private static int minimalEnergyToReproduction;
-//    private static int reproductionCost;
+    private final AnimalConfig config;
     private MapDirection orientation = MapDirection.NORTH;
     private final IWorldMap map;
     private int energy;
     private int children = 0;
     private int days = 0;
     private final Genome genome;
-
-//    public static void initAnimal(int startEnergy, int reproductionCost, int minimalEnergyToReproduction, int energyFromPlant){
-//        if (startEnergy > 0)
-//            Animal.startEnergy = startEnergy;
-////        else
-////            throw new IllegalArgumentException("energy must be higher than 0");
-//        if (minimalEnergyToReproduction > 0)
-//            Animal.minimalEnergyToReproduction = minimalEnergyToReproduction;
-////        else throw new IllegalArgumentException("minimal energy to couple must be higher than 0");
-//        if (reproductionCost < minimalEnergyToReproduction)
-//            Animal.reproductionCost = reproductionCost;
-////        else throw new IllegalArgumentException("reproduction cost must be lower than minimal value " + minimalEnergyToReproduction);
-//        if (energyFromPlant > 0)
-//            Animal.energyFromPlant = energyFromPlant;
-////        else throw new IllegalArgumentException("energy provided by plant must be higher than 0");
-//    }
-
+    private boolean alive = true;
     public Animal(IWorldMap map, Config config){
         this(map, Vector2d.randomVectorInRectangle(map.getLowerLeft(), map.getUpperRight()), new Genome(config), config.getStartEnergy(), config);
     }
-//    public Animal(IWorldMap map, Vector2d initialPosition, Genome genome, AnimalConfig config){
-////        this(map,initialPosition,genome);
-//    }
     public Animal(IWorldMap map, Vector2d initialPosition, Genome genome, int energy, AnimalConfig config){
         this.map = map;
         this.position = initialPosition;
@@ -71,8 +48,9 @@ public class Animal extends AbstractMapElement{
 
     public void move(){
         this.energy--;
-        if(this.energy == -1) {
+        if(this.energy < 0) {
             this.manager.animalDied(this);
+            alive = false;
             return;
         }
         this.days += 1;
@@ -111,14 +89,9 @@ public class Animal extends AbstractMapElement{
 
     @Override
     public Shape get_representation(SetAnimalTarget setAnimal) {
-        var circle = new Circle(5, Color.color(max(min(energy/100.0, 1),0), max(min(energy/10, 1),0),max( min(energy, 1),0)));
+        var circle = new Circle(5, Color.color(max(min(energy/100.0, 1),0),0,0));
         var this_animal = this;
-        circle.setOnMouseClicked(new EventHandler(){
-            @Override
-            public void handle(Event event) {
-                setAnimal.setAnimal(this_animal);
-            }
-        });
+        circle.setOnMouseClicked((EventHandler) event -> setAnimal.setAnimal(this_animal));
         return circle;
     }
 
@@ -134,8 +107,15 @@ public class Animal extends AbstractMapElement{
     }
 
     public String getInfo() {
-        return "Genome : " + genome.toString()
-                + "\nActivated genome: " + genome.getGene()
-                + "\nEnergy : " + energy;
+        var str =  "Genome : " + genome.toString()
+                + "\nActivated gene: " + genome.getGene();
+        if (isAlive())
+            str +="\nEnergy : " + energy;
+        else
+            str += "\nDEAD";
+        return str;
+    }
+    public boolean isAlive(){
+        return alive;
     }
 }

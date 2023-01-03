@@ -2,6 +2,7 @@ package agh.ics.darvin;
 
 import agh.ics.darvin.config.GenomeConfig;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -34,25 +35,6 @@ public class Genome {
         this.actualGeneIndex = config.get_behaviourType().getNextIndex(this.actualGeneIndex, config.get_genomeLength());
         return actualGene;
     }
-//    static public void initGenome(int genomeLength, int maxMutationNumber, MutationType mutationType, BehaviourType behaviourType){
-//        Genome.initGenome(genomeLength, 0, maxMutationNumber, mutationType, behaviourType);
-//    }
-
-//    static public void initGenome(int genomeLength,int minMutationNumber, int maxMutationNumber, MutationType mutationType, BehaviourType behaviourType){
-//        Genome.mutationType = mutationType;
-//        Genome.behaviourType = behaviourType;
-//        if (maxMutationNumber < minMutationNumber)
-//            throw new IllegalArgumentException("minimal mutation number must be equal or lower than maximal mutation number");
-//        if (genomeLength > 0)
-//            Genome.genomeLength = genomeLength;
-//        else
-//            throw new IllegalArgumentException("genome length must be higher than 0");
-//        if (minMutationNumber >= 0){
-//            Genome.minMutationNumber = minMutationNumber;
-//            Genome.maxMutationNumber = maxMutationNumber;
-//        }
-//        else throw new IllegalArgumentException("number of mutation must be 0 or higher");
-//    }
 
     private int getMutationNumber() {
         if (config.get_minMutationNumber() == config.get_maxMutationNumber()) return 0;
@@ -61,9 +43,6 @@ public class Genome {
     }
 
     private int genes_from_left_share(int left, int right) {
-//        int tmp = Math.min(share1, share2);
-//        share1 = Math.max(share1, share2);
-//        share2 = tmp;
         return (int) ((float) left / (left + right) * config.get_genomeLength());
     }
 
@@ -84,11 +63,6 @@ public class Genome {
     }
 
     public Genome mergeWith(Genome other, int this_energy, int other_energy) {
-//        if (this_energy < other_energy){
-//            Genome tmp = other;
-//            other = genome2;
-//            genome2 = tmp;
-//        }
         int thisGenesNumber = genes_from_left_share(this_energy, other_energy);
         int otherGenesNumber = this.genes.length - thisGenesNumber;
         Side side = Side.randomSide();
@@ -105,6 +79,11 @@ public class Genome {
         Genome newGenome = new Genome(genes, config);
         mutation(newGenome);
         return newGenome;
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(genes);
     }
 }
 

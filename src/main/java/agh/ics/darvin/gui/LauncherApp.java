@@ -46,6 +46,7 @@ public class LauncherApp extends Application {
     private ComboBox mutationVariant;
     private NumberText genomeLength;
     private ComboBox movementVariant;
+    private NumberText sleepTime;
 
     private static <T extends Node> T add_input(GridPane grid, String title, int row, T input_form) {
         Label widthLabel = new Label(title);
@@ -87,7 +88,8 @@ public class LauncherApp extends Application {
                 this.maxNumMutations.getInt(),
                 MutationType.fromString(this.mutationVariant.getValue().toString()),
                 this.genomeLength.getInt(),
-                BehaviourType.fromString(this.movementVariant.getValue().toString())
+                BehaviourType.fromString(this.movementVariant.getValue().toString()),
+                this.sleepTime.getInt()
         );
     }
 
@@ -124,6 +126,7 @@ public class LauncherApp extends Application {
         this.mutationVariant = add_combo_box(grid, "Mutation variant", rowIndex++, Arrays.stream(MutationType.values()).map(e -> e.toString()).collect(Collectors.toList()));
         this.genomeLength = add_input(grid, "Animal genome length", rowIndex++, new NumberText(10));
         this.movementVariant = add_combo_box(grid, "Movement variant", rowIndex++, Arrays.stream(BehaviourType.values()).map(e -> e.toString()).collect(Collectors.toList()));
+        this.sleepTime = add_input(grid, "Sleep after every step [ms]", rowIndex++, new NumberText(100));
 
         var startButton = new Button("Start simulation");
         HBox box = new HBox(startButton);

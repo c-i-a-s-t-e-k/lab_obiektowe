@@ -35,6 +35,10 @@ public class SimulationView implements IMapUpdateObserver, SetAnimalTarget {
         this.config = config;
         this.simulation = new Simulation(this, config);
     }
+    private void tracked_label_refresh(){
+        if(tracked_animal!= null)
+            animalText.setText(tracked_animal.getInfo());
+    }
 
     private void render_refresh(IWorldMap map) {
         // clean
@@ -63,8 +67,7 @@ public class SimulationView implements IMapUpdateObserver, SetAnimalTarget {
         animal_count_series.getData().add(new XYChart.Data(simulation.getDay(), simulation.getAnimals().size()));
         plant_count_series.getData().add(new XYChart.Data(simulation.getDay(), n_drawn - simulation.getAnimals().size()));
         empty_field_series.getData().add(new XYChart.Data(simulation.getDay(), empty_fields));
-        if(tracked_animal!= null)
-            animalText.setText(tracked_animal.getInfo());
+        tracked_label_refresh();
     }
 
     public void run() {
@@ -151,5 +154,8 @@ public class SimulationView implements IMapUpdateObserver, SetAnimalTarget {
     @Override
     public void setAnimal(Animal animal) {
         tracked_animal = animal;
+        Platform.runLater(() -> {
+            tracked_label_refresh();
+        });
     }
 }
