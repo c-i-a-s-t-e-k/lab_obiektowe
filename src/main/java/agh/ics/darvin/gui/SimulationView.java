@@ -22,12 +22,12 @@ public class SimulationView implements IMapUpdateObserver {
     Simulation simulation;
     private GridPane grid;
     private LineChart<Number, Number> lineChart;
+    private XYChart.Series series;
 
     public SimulationView(Config config) {
         this.config = config;
         this.simulation = new Simulation(this, config);
     }
-
 
     private void render_refresh(IWorldMap map) {
         // clean
@@ -43,13 +43,14 @@ public class SimulationView implements IMapUpdateObserver {
                     for (var e : elements) {
                         grid.add(e.get_representation(), x, y);
                     }
-                    System.out.println("Drawing at " + position.toString());
                 }
                 else {
                     grid.add(new Circle(), x, y);
                 }
             }
         }
+
+        series.getData().add(new XYChart.Data(simulation.getDay(), simulation.getAnimals().size()));
     }
 
     public void run() {
@@ -59,28 +60,28 @@ public class SimulationView implements IMapUpdateObserver {
 
         final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
-        xAxis.setLabel("Number of Month");
+        xAxis.setLabel("Day number");
         //creating the chart
         this.lineChart =
                 new LineChart<Number, Number>(xAxis, yAxis);
 
         lineChart.setTitle("Stats");
         //defining a series
-        XYChart.Series series = new XYChart.Series();
+        this.series = new XYChart.Series();
         series.setName("Plant population");
         //populating the series with data
-        series.getData().add(new XYChart.Data(1, 23));
-        series.getData().add(new XYChart.Data(2, 14));
-        series.getData().add(new XYChart.Data(3, 15));
-        series.getData().add(new XYChart.Data(4, 24));
-        series.getData().add(new XYChart.Data(5, 34));
-        series.getData().add(new XYChart.Data(6, 36));
-        series.getData().add(new XYChart.Data(7, 22));
-        series.getData().add(new XYChart.Data(8, 45));
-        series.getData().add(new XYChart.Data(9, 43));
-        series.getData().add(new XYChart.Data(10, 17));
-        series.getData().add(new XYChart.Data(11, 29));
-        series.getData().add(new XYChart.Data(12, 25));
+//        series.getData().add(new XYChart.Data(1, 23));
+//        series.getData().add(new XYChart.Data(2, 14));
+//        series.getData().add(new XYChart.Data(3, 15));
+//        series.getData().add(new XYChart.Data(4, 24));
+//        series.getData().add(new XYChart.Data(5, 34));
+//        series.getData().add(new XYChart.Data(6, 36));
+//        series.getData().add(new XYChart.Data(7, 22));
+//        series.getData().add(new XYChart.Data(8, 45));
+//        series.getData().add(new XYChart.Data(9, 43));
+//        series.getData().add(new XYChart.Data(10, 17));
+//        series.getData().add(new XYChart.Data(11, 29));
+//        series.getData().add(new XYChart.Data(12, 25));
 
 //        Scene scene  = new Scene(lineChart,800,600);
         lineChart.getData().add(series);
@@ -93,6 +94,7 @@ public class SimulationView implements IMapUpdateObserver {
 
         var hbox = new HBox(vbox, grid);
         hbox.setAlignment(Pos.CENTER);
+        grid.setAlignment(Pos.CENTER);
         stage.setTitle("Simulation");
         stage.setScene(new Scene(hbox, 450, 450));
         stage.show();

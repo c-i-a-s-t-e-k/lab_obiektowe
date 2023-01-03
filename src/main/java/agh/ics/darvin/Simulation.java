@@ -18,6 +18,7 @@ public class Simulation implements Runnable, IDeathsObserver {
     private final Map<Vector2d, Animal> animalsToFeed = new HashMap<>();
     private final int dailyGrowth;
     private final IMapUpdateObserver parent;
+    private int day;
 
     public Simulation(IMapUpdateObserver parent, Config config){
         this.parent = parent;
@@ -151,4 +152,7 @@ public class Simulation implements Runnable, IDeathsObserver {
         return this.animals;
     }
 
+    public int getDay() {
+        return day;
+    }
 }
