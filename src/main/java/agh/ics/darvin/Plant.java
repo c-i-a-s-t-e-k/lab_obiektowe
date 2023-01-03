@@ -22,6 +22,6 @@ public class Plant extends AbstractMapElement{
 
     @Override
     public Shape get_representation() {
-        return new Rectangle(5, 5, Color.color(0,1,0));
+        return new Rectangle(10, 10, Color.color(0,1,0));
     }
 }

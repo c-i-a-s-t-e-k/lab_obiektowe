@@ -98,6 +98,7 @@ public class Simulation implements Runnable, IDeathsObserver {
         eatPlants();
         animalsReproduction();
         plantsGrowth();
+        day++;
         parent.mapChanged(map);
         System.out.println(this.map);
     }

@@ -57,6 +57,7 @@ public class SimulationView implements IMapUpdateObserver {
         Stage stage = new Stage();
 
         this.grid = new GridPane();
+        grid.setGridLinesVisible(true);
 
         final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
@@ -68,7 +69,7 @@ public class SimulationView implements IMapUpdateObserver {
         lineChart.setTitle("Stats");
         //defining a series
         this.series = new XYChart.Series();
-        series.setName("Plant population");
+        series.setName("Animal population");
 
 
         lineChart.getData().add(series);
