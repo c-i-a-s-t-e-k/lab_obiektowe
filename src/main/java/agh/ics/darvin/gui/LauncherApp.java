@@ -74,8 +74,6 @@ public class LauncherApp extends Application {
     }
 
     private Config generateConfig() throws InvalidConfigException {
-        Config config;
-        System.out.println(this.plantGrowthVariant.getValue().toString());
         return new Config(this.widthField.getInt(),
                 this.heightField.getInt(),
                 ForestType.fromString(this.plantGrowthVariant.getValue().toString()),
@@ -137,7 +135,8 @@ public class LauncherApp extends Application {
             public void handle(ActionEvent e) {
                 try {
                     var config = generateConfig();
-                    SimulationView.run(config);
+                    SimulationView sim_view = new SimulationView(config);
+                    sim_view.run();
                 } catch (InvalidConfigException ex) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Invalid config");

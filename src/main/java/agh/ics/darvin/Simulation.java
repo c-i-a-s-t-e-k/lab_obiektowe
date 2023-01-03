@@ -12,17 +12,15 @@ import java.util.Map;
 
 public class Simulation implements Runnable, IDeathsObserver {
     private boolean running = true;
-    private static boolean simulationEnded = true;
     private final RectangularMap map;
     private final List<Animal> animals = new ArrayList<>();
     private final List<Animal> deadAnimals = new ArrayList<>();
     private final Map<Vector2d, Animal> animalsToFeed = new HashMap<>();
     private final int dailyGrowth;
+    private final IMapUpdateObserver parent;
 
-    public Simulation(Config config){
-        if (!simulationEnded)
-            throw new IllegalStateException("can not start new simulation if another is still running");
-        Simulation.simulationEnded = false;
+    public Simulation(IMapUpdateObserver parent, Config config){
+        this.parent = parent;
         Animal.initAnimal(config.startEnergy, config.energyCost, config.minEnergy, config.energyFromPlant);
         Genome.initGenome(config.genomeLength, config.maxMutationNum, config.minMutationNum, config.mutationType, config.behaviourType);
         this.map = new RectangularMap(config.width, config.height, config.boundaryType, config.forestType);
@@ -37,33 +35,33 @@ public class Simulation implements Runnable, IDeathsObserver {
         map.addObserver(this);
         this.dailyGrowth = config.dailyGrowth;
     }
-    public Simulation() {
-        this(20, 10, ForestType.EQUATORIAL_FOREST, BoundaryType.PLANET, 10, 10
-                , 30, 10, 40, 25, 20, 0, 0
-                , MutationType.SLIGHT_CHANGE, 10, BehaviourType.FULL_PREDESTINATION);
-    }
-
-    public Simulation(int width, int height, ForestType forestType, BoundaryType boundaryType, int plantsNum,
-                      int energyFromPlant, int dailyGrowth, int animalNum, int startEnergy, int minEnergy,
-                      int energyCost, int minMutationNum, int maxMutationNum, MutationType mutationType,
-                      int genomeLength, BehaviourType behaviourType) {
-        if (!simulationEnded)
-            throw new IllegalStateException("can not start new simulation if another is still running");
-        Simulation.simulationEnded = false;
-        Animal.initAnimal(startEnergy, energyCost, minEnergy, energyFromPlant);
-        Genome.initGenome(genomeLength, maxMutationNum, minMutationNum, mutationType, behaviourType);
-        this.map = new RectangularMap(width, height, boundaryType, forestType);
-        for (int i = 0; i < plantsNum; i++) {
-            this.map.seedPlant();
-        }
-        for (int i = 0; i < animalNum; i++) {
-            Animal newAnimal = new Animal(this.map);
-            animals.add(newAnimal);
-            this.map.place(newAnimal);
-        }
-        map.addObserver(this);
-        this.dailyGrowth = dailyGrowth;
-    }
+//    public Simulation() {
+//        this(20, 10, ForestType.EQUATORIAL_FOREST, BoundaryType.PLANET, 10, 10
+//                , 30, 10, 40, 25, 20, 0, 0
+//                , MutationType.SLIGHT_CHANGE, 10, BehaviourType.FULL_PREDESTINATION);
+//    }
+//
+//    public Simulation(int width, int height, ForestType forestType, BoundaryType boundaryType, int plantsNum,
+//                      int energyFromPlant, int dailyGrowth, int animalNum, int startEnergy, int minEnergy,
+//                      int energyCost, int minMutationNum, int maxMutationNum, MutationType mutationType,
+//                      int genomeLength, BehaviourType behaviourType) {
+//        if (!simulationEnded)
+//            throw new IllegalStateException("can not start new simulation if another is still running");
+//        Simulation.simulationEnded = false;
+//        Animal.initAnimal(startEnergy, energyCost, minEnergy, energyFromPlant);
+//        Genome.initGenome(genomeLength, maxMutationNum, minMutationNum, mutationType, behaviourType);
+//        this.map = new RectangularMap(width, height, boundaryType, forestType);
+//        for (int i = 0; i < plantsNum; i++) {
+//            this.map.seedPlant();
+//        }
+//        for (int i = 0; i < animalNum; i++) {
+//            Animal newAnimal = new Animal(this.map);
+//            animals.add(newAnimal);
+//            this.map.place(newAnimal);
+//        }
+//        map.addObserver(this);
+//        this.dailyGrowth = dailyGrowth;
+//    }
 
 
     private void killAnimals() {
@@ -121,6 +119,7 @@ public class Simulation implements Runnable, IDeathsObserver {
         eatPlants();
         animalsReproduction();
         plantsGrowth();
+        parent.mapChanged(map);
         System.out.println(this.map);
     }
 
@@ -135,7 +134,6 @@ public class Simulation implements Runnable, IDeathsObserver {
 
     public void endSimulation() {
         running = false;
-        Simulation.simulationEnded = true;
     }
 
     @Override
@@ -146,4 +144,5 @@ public class Simulation implements Runnable, IDeathsObserver {
     public List<Animal> getAnimals(){
         return this.animals;
     }
+
 }

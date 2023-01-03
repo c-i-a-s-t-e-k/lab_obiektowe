@@ -16,17 +16,17 @@ public class Animal extends AbstractMapElement{
     public static void initAnimal(int startEnergy, int reproductionCost, int minimalEnergyToReproduction, int energyFromPlant){
         if (startEnergy > 0)
             Animal.startEnergy = startEnergy;
-        else
-            throw new IllegalArgumentException("energy must be higher than 0");
+//        else
+//            throw new IllegalArgumentException("energy must be higher than 0");
         if (minimalEnergyToReproduction > 0)
             Animal.minimalEnergyToReproduction = minimalEnergyToReproduction;
-        else throw new IllegalArgumentException("minimal energy to couple must be higher than 0");
+//        else throw new IllegalArgumentException("minimal energy to couple must be higher than 0");
         if (reproductionCost < minimalEnergyToReproduction)
             Animal.reproductionCost = reproductionCost;
-        else throw new IllegalArgumentException("reproduction cost must be lower than minimal value " + minimalEnergyToReproduction);
+//        else throw new IllegalArgumentException("reproduction cost must be lower than minimal value " + minimalEnergyToReproduction);
         if (energyFromPlant > 0)
             Animal.energyFromPlant = energyFromPlant;
-        else throw new IllegalArgumentException("energy provided by plant must be higher than 0");
+//        else throw new IllegalArgumentException("energy provided by plant must be higher than 0");
     }
 
     public Animal(IWorldMap map){

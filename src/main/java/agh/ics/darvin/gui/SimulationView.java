@@ -1,7 +1,10 @@
 package agh.ics.darvin.gui;
 
 import agh.ics.darvin.Config;
+import agh.ics.darvin.IMapUpdateObserver;
+import agh.ics.darvin.IWorldMap;
 import agh.ics.darvin.Simulation;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
@@ -11,22 +14,44 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-public class SimulationView {
-    static public void run(Config config) {
+public class SimulationView implements IMapUpdateObserver {
+    private boolean paused = false;
+    private final Config config;
+    Simulation simulation;
+    private GridPane grid;
+
+    public SimulationView(Config config) {
+        this.config = config;
+        this.simulation = new Simulation(this, config);
+    }
+
+
+    private void render_refresh() {
+        // clean
+        for (var e:grid.getChildren()) {
+            grid.getChildren().remove(e);
+        }
+
+        for (var a : simulation.getAnimals()) {
+            var pos = a.getPosition();
+            grid.add(new Circle(), pos.x, pos.y);
+        }
+    }
+
+    public void run() {
         Stage stage = new Stage();
 
-        Simulation simulation = new Simulation();
-
-        var grid = new GridPane();
+        this.grid = new GridPane();
 
         final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("Number of Month");
         //creating the chart
-        final LineChart<Number,Number> lineChart =
-                new LineChart<Number,Number>(xAxis,yAxis);
+        final LineChart<Number, Number> lineChart =
+                new LineChart<Number, Number>(xAxis, yAxis);
 
         lineChart.setTitle("Stock Monitoring, 2010");
         //defining a series
@@ -58,7 +83,18 @@ public class SimulationView {
         var hbox = new HBox(vbox, grid);
         stage.setTitle("Simulation");
         stage.setScene(new Scene(hbox, 450, 450));
-        stage.showAndWait();
+        stage.show();
+
+//        engine.moveDelay = 300; // in ms
+        Thread engineThread = new Thread(simulation);
+        engineThread.start();
+    }
+
+    @Override
+    public void mapChanged(IWorldMap map) {
+        Platform.runLater(() -> {
+            render_refresh();
+        });
     }
 
 }
