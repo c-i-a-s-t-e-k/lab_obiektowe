@@ -1,11 +1,11 @@
 package agh.ics.darvin;
 
+import agh.ics.darvin.enums.BehaviourType;
+import agh.ics.darvin.enums.BoundaryType;
+import agh.ics.darvin.enums.ForestType;
+import agh.ics.darvin.enums.MutationType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.HashSet;
-import java.util.Set;
-import java.util.logging.Handler;
 
 public class TestElementsContainer {
     @Test

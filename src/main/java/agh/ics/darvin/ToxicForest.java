@@ -8,7 +8,7 @@ public class ToxicForest extends AbstractForest implements IDeathsObserver{
     private final RectangularMap map;
     private final int numOfFirstCategoryFields;
 
-    ToxicForest(RectangularMap map){
+    public ToxicForest(RectangularMap map){
         this.map = map;
         this.map.addObserver(this);
         for (int x = 0; x < this.map.width; x++){

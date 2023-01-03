@@ -1,5 +1,8 @@
 package agh.ics.darvin;
 
+import agh.ics.darvin.enums.BehaviourType;
+import agh.ics.darvin.enums.MutationType;
+
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;

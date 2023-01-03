@@ -1,5 +1,8 @@
 package agh.ics.darvin;
 
+import agh.ics.darvin.enums.BoundaryType;
+import agh.ics.darvin.enums.ForestType;
+
 import java.util.ArrayList;
 import java.util.List;
 

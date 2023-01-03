@@ -1,8 +1,8 @@
-package agh.ics.darvin;
+package agh.ics.darvin.enums;
 
 import java.util.Random;
 
-enum MutationType {
+public enum MutationType {
     FULL_RANDOM,
     SLIGHT_CHANGE,
     NO_CHANGE;

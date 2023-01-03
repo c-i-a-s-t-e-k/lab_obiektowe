@@ -1,5 +1,6 @@
 package agh.ics.darvin;
 
+import agh.ics.darvin.enums.MutationType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

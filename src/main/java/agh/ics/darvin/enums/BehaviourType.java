@@ -1,4 +1,4 @@
-package agh.ics.darvin;
+package agh.ics.darvin.enums;
 
 import java.util.Random;
 
