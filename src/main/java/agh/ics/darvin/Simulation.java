@@ -20,6 +20,7 @@ public class Simulation implements Runnable, IDeathsObserver {
     private final IMapUpdateObserver parent;
     private int day;
 
+
     public Simulation(IMapUpdateObserver parent, Config config){
         this.parent = parent;
         Animal.initAnimal(config.startEnergy, config.energyCost, config.minEnergy, config.energyFromPlant);

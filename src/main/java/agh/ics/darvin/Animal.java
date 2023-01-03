@@ -1,5 +1,8 @@
 package agh.ics.darvin;
 
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
@@ -104,8 +107,16 @@ public class Animal extends AbstractMapElement{
     }
 
     @Override
-    public Shape get_representation() {
-        return new Circle(5, Color.color(max(min(energy/100.0, 1),0), max(min(energy/10, 1),0),max( min(energy, 1),0)));
+    public Shape get_representation(CanSetAnimal setAnimal) {
+        var circle = new Circle(5, Color.color(max(min(energy/100.0, 1),0), max(min(energy/10, 1),0),max( min(energy, 1),0)));
+        var this_animal = this;
+        circle.setOnMouseClicked(new EventHandler(){
+            @Override
+            public void handle(Event event) {
+                setAnimal.setAnimal(this_animal);
+            }
+        });
+        return circle;
     }
 
     public void setManager(AnimalManager manager){
@@ -117,5 +128,11 @@ public class Animal extends AbstractMapElement{
                 return this.children > animal.children;
             else return this.days > animal.days;
         else return this.energy > animal.energy;
+    }
+
+    public String getInfo() {
+        return "Genome : " + genome.toString()
+                + "\nActivated genome: " + genome.getGene()
+                + "\nEnergy : " + energy;
     }
 }
