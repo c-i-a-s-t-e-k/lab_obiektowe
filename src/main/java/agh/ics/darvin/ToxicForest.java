@@ -48,7 +48,9 @@ public class ToxicForest extends AbstractForest implements IDeathsObserver{
 
     @Override
     public void animalDied(Animal animal) {
-        fields.get(animal.getPosition()).increaseToxicity();
+        var field = fields.get(animal.getPosition());
+        if (field != null)
+            field.increaseToxicity();
         setFieldsArrays();
     }
 }

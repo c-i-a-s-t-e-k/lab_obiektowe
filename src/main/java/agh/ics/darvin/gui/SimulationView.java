@@ -31,8 +31,8 @@ public class SimulationView implements IMapUpdateObserver {
 
     private void render_refresh(IWorldMap map) {
         // clean
-        for (var e : grid.getChildren()) {
-            grid.getChildren().remove(e);
+        while(grid.getChildren().size() > 0) {
+            grid.getChildren().remove(0);
         }
 
         for (int x = 0; x < config.width; x++) {
@@ -69,24 +69,11 @@ public class SimulationView implements IMapUpdateObserver {
         //defining a series
         this.series = new XYChart.Series();
         series.setName("Plant population");
-        //populating the series with data
-//        series.getData().add(new XYChart.Data(1, 23));
-//        series.getData().add(new XYChart.Data(2, 14));
-//        series.getData().add(new XYChart.Data(3, 15));
-//        series.getData().add(new XYChart.Data(4, 24));
-//        series.getData().add(new XYChart.Data(5, 34));
-//        series.getData().add(new XYChart.Data(6, 36));
-//        series.getData().add(new XYChart.Data(7, 22));
-//        series.getData().add(new XYChart.Data(8, 45));
-//        series.getData().add(new XYChart.Data(9, 43));
-//        series.getData().add(new XYChart.Data(10, 17));
-//        series.getData().add(new XYChart.Data(11, 29));
-//        series.getData().add(new XYChart.Data(12, 25));
 
-//        Scene scene  = new Scene(lineChart,800,600);
+
         lineChart.getData().add(series);
-        lineChart.setMaxWidth(Double.MAX_VALUE);
-        lineChart.setMaxHeight(Double.MAX_VALUE);
+//        lineChart.setMaxWidth(Double.MAX_VALUE);
+//        lineChart.setMaxHeight(Double.MAX_VALUE);
         var stats = new Label("Label");
         var vbox = new VBox(lineChart, stats);
         vbox.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);

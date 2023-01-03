@@ -105,7 +105,7 @@ public class Animal extends AbstractMapElement{
 
     @Override
     public Shape get_representation() {
-        return new Circle(5, Color.color(min(energy/100.0, 1), min(energy/10, 1), min(energy, 1)));
+        return new Circle(5, Color.color(max(min(energy/100.0, 1),0), max(min(energy/10, 1),0),max( min(energy, 1),0)));
     }
 
     public void setManager(AnimalManager manager){

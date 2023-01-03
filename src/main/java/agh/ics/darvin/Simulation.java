@@ -36,34 +36,6 @@ public class Simulation implements Runnable, IDeathsObserver {
         map.addObserver(this);
         this.dailyGrowth = config.dailyGrowth;
     }
-//    public Simulation() {
-//        this(20, 10, ForestType.EQUATORIAL_FOREST, BoundaryType.PLANET, 10, 10
-//                , 30, 10, 40, 25, 20, 0, 0
-//                , MutationType.SLIGHT_CHANGE, 10, BehaviourType.FULL_PREDESTINATION);
-//    }
-//
-//    public Simulation(int width, int height, ForestType forestType, BoundaryType boundaryType, int plantsNum,
-//                      int energyFromPlant, int dailyGrowth, int animalNum, int startEnergy, int minEnergy,
-//                      int energyCost, int minMutationNum, int maxMutationNum, MutationType mutationType,
-//                      int genomeLength, BehaviourType behaviourType) {
-//        if (!simulationEnded)
-//            throw new IllegalStateException("can not start new simulation if another is still running");
-//        Simulation.simulationEnded = false;
-//        Animal.initAnimal(startEnergy, energyCost, minEnergy, energyFromPlant);
-//        Genome.initGenome(genomeLength, maxMutationNum, minMutationNum, mutationType, behaviourType);
-//        this.map = new RectangularMap(width, height, boundaryType, forestType);
-//        for (int i = 0; i < plantsNum; i++) {
-//            this.map.seedPlant();
-//        }
-//        for (int i = 0; i < animalNum; i++) {
-//            Animal newAnimal = new Animal(this.map);
-//            animals.add(newAnimal);
-//            this.map.place(newAnimal);
-//        }
-//        map.addObserver(this);
-//        this.dailyGrowth = dailyGrowth;
-//    }
-
 
     private void killAnimals() {
         for (Animal animal : deadAnimals) {
