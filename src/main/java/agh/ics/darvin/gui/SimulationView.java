@@ -11,8 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
@@ -22,7 +20,8 @@ public class SimulationView implements IMapUpdateObserver {
     Simulation simulation;
     private GridPane grid;
     private LineChart<Number, Number> lineChart;
-    private XYChart.Series series;
+    private XYChart.Series animal_count_series;
+    private XYChart.Series plant_count_series;
 
     public SimulationView(Config config) {
         this.config = config;
@@ -34,7 +33,7 @@ public class SimulationView implements IMapUpdateObserver {
         while(grid.getChildren().size() > 0) {
             grid.getChildren().remove(0);
         }
-
+        int n_drawn = 0;
         for (int x = 0; x < config.width; x++) {
             for (int y = 0; y < config.height; y++) {
                 Vector2d position = new Vector2d(x, y);
@@ -42,6 +41,7 @@ public class SimulationView implements IMapUpdateObserver {
                     IMapElement[] elements = map.elementsAt(position);
                     for (var e : elements) {
                         grid.add(e.get_representation(), x, y);
+                        n_drawn++;
                     }
                 }
                 else {
@@ -50,7 +50,8 @@ public class SimulationView implements IMapUpdateObserver {
             }
         }
 
-        series.getData().add(new XYChart.Data(simulation.getDay(), simulation.getAnimals().size()));
+        animal_count_series.getData().add(new XYChart.Data(simulation.getDay(), simulation.getAnimals().size()));
+        plant_count_series.getData().add(new XYChart.Data(simulation.getDay(), n_drawn - simulation.getAnimals().size()));
     }
 
     public void run() {
@@ -68,11 +69,15 @@ public class SimulationView implements IMapUpdateObserver {
 
         lineChart.setTitle("Stats");
         //defining a series
-        this.series = new XYChart.Series();
-        series.setName("Animal population");
+        animal_count_series = new XYChart.Series();
+        animal_count_series.setName("Animal population");
+
+        plant_count_series = new XYChart.Series();
+        plant_count_series.setName("Plant count");
+        lineChart.getData().add(plant_count_series);
 
 
-        lineChart.getData().add(series);
+        lineChart.getData().add(animal_count_series);
 //        lineChart.setMaxWidth(Double.MAX_VALUE);
 //        lineChart.setMaxHeight(Double.MAX_VALUE);
         var stats = new Label("Label");
