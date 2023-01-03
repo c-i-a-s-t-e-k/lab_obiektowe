@@ -12,6 +12,13 @@ public enum BehaviourType {
             case SOME_MADNESS -> getSomeMadness(i, n);
         };
     }
+    static public BehaviourType fromString(String name){
+        for (var e : BehaviourType.values()) {
+            if (name == e.toString())
+                return e;
+        }
+        return BehaviourType.values()[0]; // On error return default value
+    }
 
 
     private int getSomeMadness(int i, int n){

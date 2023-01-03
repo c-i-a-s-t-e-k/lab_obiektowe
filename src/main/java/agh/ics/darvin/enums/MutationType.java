@@ -36,4 +36,11 @@ public enum MutationType {
             case NO_CHANGE -> gene;
         };
     }
+    static public MutationType fromString(String name){
+        for (var e : MutationType.values()) {
+            if (name == e.toString())
+                return e;
+        }
+        return MutationType.values()[0]; // On error return default value
+    }
 }

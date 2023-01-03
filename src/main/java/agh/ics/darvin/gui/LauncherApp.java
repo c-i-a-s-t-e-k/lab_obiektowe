@@ -75,10 +75,11 @@ public class LauncherApp extends Application {
 
     private Config generateConfig() throws InvalidConfigException {
         Config config;
+        System.out.println(this.plantGrowthVariant.getValue().toString());
         return new Config(this.widthField.getInt(),
                 this.heightField.getInt(),
-                ForestType.EQUATORIAL_FOREST,
-                BoundaryType.PLANET,
+                ForestType.fromString(this.plantGrowthVariant.getValue().toString()),
+                BoundaryType.fromString(this.worldBorderVariant.getValue().toString()),
                 this.startingGrass.getInt(),
                 this.energyPerGrass.getInt(),
                 this.plantsGrowingPerDay.getInt(),
@@ -88,9 +89,9 @@ public class LauncherApp extends Application {
                 this.childStartingEnergy.getInt(),
                 this.minNumMutations.getInt(),
                 this.maxNumMutations.getInt(),
-                MutationType.FULL_RANDOM,
+                MutationType.fromString(this.mutationVariant.getValue().toString()),
                 this.genomeLength.getInt(),
-                BehaviourType.FULL_PREDESTINATION
+                BehaviourType.fromString(this.movementVariant.getValue().toString())
         );
     }
 

@@ -9,7 +9,7 @@ public enum ForestType {
     TOXIC_FOREST,
     EQUATORIAL_FOREST;
 
-    public ForestType fromString(String name){
+    static public ForestType fromString(String name){
         for (var e : ForestType.values()) {
             if (name == e.toString())
                 return e;

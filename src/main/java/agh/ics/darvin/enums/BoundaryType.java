@@ -15,4 +15,11 @@ public enum BoundaryType {
             case PORTAL -> new PortalBoundary(map);
         };
     }
+    static public BoundaryType fromString(String name){
+        for (var e : BoundaryType.values()) {
+            if (name == e.toString())
+                return e;
+        }
+        return BoundaryType.values()[0]; // On error return default value
+    }
 }
