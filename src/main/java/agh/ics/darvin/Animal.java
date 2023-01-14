@@ -7,12 +7,14 @@ import javafx.scene.shape.Shape;
 import static java.lang.Double.max;
 import static java.lang.Double.min;
 
-public class Animal extends AbstractMapElement{
-    private AnimalManager manager;
+public class Animal extends AbstractMapElement {
+
     private static int startEnergy;
     private static int energyFromPlant;
     private static int minimalEnergyToReproduction;
     private static int reproductionCost;
+
+    private AnimalManager manager;
     private MapDirection orientation = MapDirection.NORTH;
     private final IWorldMap map;
     private int energy;
@@ -20,11 +22,11 @@ public class Animal extends AbstractMapElement{
     private int days = 0;
     private final Genome genome;
 
-    public static void initAnimal(int startEnergy, int reproductionCost, int minimalEnergyToReproduction, int energyFromPlant){
+    public static void initAnimal(int startEnergy, int reproductionCost, int minimalEnergyToReproduction, int energyFromPlant) {
         if (startEnergy > 0)
             Animal.startEnergy = startEnergy;
-//        else
-//            throw new IllegalArgumentException("energy must be higher than 0");
+        else
+            throw new IllegalArgumentException("energy must be higher than 0"); // to jest potrzebne; a jeżeli jest to załatwione gdzieś indziej, to usunąć if'a
         if (minimalEnergyToReproduction > 0)
             Animal.minimalEnergyToReproduction = minimalEnergyToReproduction;
 //        else throw new IllegalArgumentException("minimal energy to couple must be higher than 0");
@@ -36,51 +38,55 @@ public class Animal extends AbstractMapElement{
 //        else throw new IllegalArgumentException("energy provided by plant must be higher than 0");
     }
 
-    public Animal(IWorldMap map){
+    public Animal(IWorldMap map) {
         this(map, Vector2d.randomVectorInRectangle(map.getLowerLeft(), map.getUpperRight()), new Genome(), Animal.startEnergy);
     }
-    public Animal(IWorldMap map, Vector2d initialPosition, Genome genome){
-        this(map,initialPosition,genome,Animal.startEnergy);
+
+    public Animal(IWorldMap map, Vector2d initialPosition, Genome genome) {
+        this(map, initialPosition, genome, Animal.startEnergy);
     }
-    public Animal(IWorldMap map, Vector2d initialPosition, Genome genome, int energy){
+
+    public Animal(IWorldMap map, Vector2d initialPosition, Genome genome, int energy) {
         this.map = map;
         this.position = initialPosition;
         this.energy = energy;
         this.genome = genome;
     }
 
-    public MapDirection getOrientation(){
+    public MapDirection getOrientation() {
         return this.orientation;
     }
-    public String toString(){
+
+    public String toString() {
         return this.orientation.toString();
     }
 
-    public Boolean isAt(Vector2d position){
+    public Boolean isAt(Vector2d position) {
         return this.position.equals(position);
     }
-    public Boolean canReproduce(){
+
+    public Boolean canReproduce() {
         return this.energy >= Animal.minimalEnergyToReproduction;
     }
 
-    public void move(){
+    public void move() {
         this.energy--;
-        if(this.energy == -1) {
+        if (this.energy == -1) {
             this.manager.animalDied(this);
             return;
         }
         this.days += 1;
         int rotations = genome.getGene();
-        for (int i = 0; i < rotations; i++){
-            this.orientation = this.orientation.next();
+        for (int i = 0; i < rotations; i++) {
+            this.orientation = this.orientation.next(); // a gdyby this.orientation.turn(n)?
         }
         Vector2d oldPosition = this.position;
         this.position = map.getFinalPosition(this);
         positionChanged(oldPosition);
     }
 
-    public Animal reproduce(Animal other){
-        if (! (this.canReproduce() && other.canReproduce()))
+    public Animal reproduce(Animal other) {  // do przemyślenia, czy nie lepiej z tego zrobić metodę statyczną przyjmującą dwa zwierzęta
+        if (!(this.canReproduce() && other.canReproduce()))
             throw new IllegalArgumentException("those animals can not couple");
         this.children++;
         other.children++;
@@ -90,29 +96,33 @@ public class Animal extends AbstractMapElement{
         return new Animal(this.map, this.position, genome, 2 * Animal.reproductionCost);
     }
 
-    private void positionChanged(Vector2d oldPosition){
+    private void positionChanged(Vector2d oldPosition) {
         this.manager.animalChangedPosition(oldPosition, this);
     }
-    public void decreaseEnergy(){
+
+    public void decreaseEnergy() {
         this.energy = this.energy - Animal.reproductionCost;
     }
-    public void feed(){
+
+    public void feed() {
         this.energy += Animal.energyFromPlant;
     }
-    public String getImageName(){
-        return "";
+
+    public String getImageName() {
+        return "";  // ??
     }
 
     @Override
-    public Shape get_representation() {
-        return new Circle(5, Color.color(min(energy/100.0, 1), min(energy/10, 1), min(energy, 1)));
+    public Shape get_representation() { // to nie Python
+        return new Circle(5, Color.color(min(energy / 100.0, 1), min(energy / 10, 1), min(energy, 1)));
     }
 
-    public void setManager(AnimalManager manager){
+    public void setManager(AnimalManager manager) {
         this.manager = manager;
     }
-    public boolean isStronger(Animal animal){
-        if(this.energy == animal.energy)
+
+    public boolean isStronger(Animal animal) {  // a czemu nie kulturalny Comparable?
+        if (this.energy == animal.energy)
             if (this.days == animal.days)
                 return this.children > animal.children;
             else return this.days > animal.days;

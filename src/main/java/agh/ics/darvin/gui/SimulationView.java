@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 public class SimulationView implements IMapUpdateObserver {
     private boolean paused = false;
     private final Config config;
-    Simulation simulation;
+    Simulation simulation;  // modyfikator dostępu?
     private GridPane grid;
     private LineChart<Number, Number> lineChart;
 
@@ -44,8 +44,7 @@ public class SimulationView implements IMapUpdateObserver {
                         grid.add(e.get_representation(), x, y);
                     }
                     System.out.println("Drawing at " + position.toString());
-                }
-                else {
+                } else {
                     grid.add(new Circle(), x, y);
                 }
             }

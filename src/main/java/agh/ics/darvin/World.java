@@ -4,7 +4,7 @@ import agh.ics.darvin.gui.LauncherApp;
 import javafx.application.Application;
 
 public class World {
-    public static void main(String[] args){
+    public static void main(String[] args) {
 //        Simulation simulation = new Simulation();
 //        Thread simulationThread = new Thread(simulation);
 //        System.out.println("Symulacja rozoczęta");

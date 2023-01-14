@@ -9,7 +9,7 @@ public enum ForestType {
     TOXIC_FOREST,
     EQUATORIAL_FOREST;
 
-    static public ForestType fromString(String name){
+    static public ForestType fromString(String name) {
         for (var e : ForestType.values()) {
             if (name == e.toString())
                 return e;
@@ -17,10 +17,13 @@ public enum ForestType {
         return ForestType.values()[0]; // On error return default value
     }
 
-    public IForest getForest(RectangularMap map){
+    public IForest getForest(RectangularMap map) {
         IForest forest = null;
-        switch (this){
-            case TOXIC_FOREST -> {forest = new ToxicForest(map); map.addObserver(forest);}
+        switch (this) {
+            case TOXIC_FOREST -> {
+                forest = new ToxicForest(map);
+                map.addObserver(forest);  // nie lepeij to zrobić w konstruktorze ToxicForest?
+            }
             case EQUATORIAL_FOREST -> forest = new EquatorialForest(map);
         }
         return forest;

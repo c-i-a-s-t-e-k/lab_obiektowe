@@ -9,13 +9,14 @@ public enum BoundaryType {
     PLANET,
     PORTAL;
 
-    public IBoundary getBoundary(RectangularMap map){
-        return switch (this){
+    public IBoundary getBoundary(RectangularMap map) {
+        return switch (this) {
             case PLANET -> new PlanetBoundary(map);
             case PORTAL -> new PortalBoundary(map);
         };
     }
-    static public BoundaryType fromString(String name){
+
+    static public BoundaryType fromString(String name) {
         for (var e : BoundaryType.values()) {
             if (name == e.toString())
                 return e;

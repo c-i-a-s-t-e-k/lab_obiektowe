@@ -14,12 +14,12 @@ public class Simulation implements Runnable, IDeathsObserver {
     private boolean running = true;
     private final RectangularMap map;
     private final List<Animal> animals = new ArrayList<>();
-    private final List<Animal> deadAnimals = new ArrayList<>();
+    private final List<Animal> deadAnimals = new ArrayList<>();  // po co Panowie trzymają martwe zwierzęta?
     private final Map<Vector2d, Animal> animalsToFeed = new HashMap<>();
     private final int dailyGrowth;
     private final IMapUpdateObserver parent;
 
-    public Simulation(IMapUpdateObserver parent, Config config){
+    public Simulation(IMapUpdateObserver parent, Config config) {
         this.parent = parent;
         Animal.initAnimal(config.startEnergy, config.energyCost, config.minEnergy, config.energyFromPlant);
         Genome.initGenome(config.genomeLength, config.maxMutationNum, config.minMutationNum, config.mutationType, config.behaviourType);
@@ -147,7 +147,7 @@ public class Simulation implements Runnable, IDeathsObserver {
         this.deadAnimals.add(animal);
     }
 
-    public List<Animal> getAnimals(){
+    public List<Animal> getAnimals() {
         return this.animals;
     }
 

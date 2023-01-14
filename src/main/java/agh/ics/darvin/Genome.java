@@ -8,39 +8,40 @@ import java.util.Random;
 import java.util.Set;
 
 public class Genome {
-    static private int genomeLength;
+    static private int genomeLength; // a gdybym chciał w różnych symulacjach mieć różne ustawienia? bo bym chciał
     static private int minMutationNumber;
     static private int maxMutationNumber;
     static private MutationType mutationType;
     static private BehaviourType behaviourType;
     static private final Random random = new Random();
-    private int actualGeneIndex;
+    private int actualGeneIndex;  // current nie actual
     private final int[] genes;
 
-    Genome(int[] genes){
+    Genome(int[] genes) { // modyfikator dostępu?
         this.genes = genes;
         this.actualGeneIndex = 0;
     }
-    Genome(){
-        Random random = new Random();
+
+    Genome() {
         int[] genes = new int[Genome.genomeLength];
-        for(int i = 0; i < Genome.genomeLength; i++){
+        for (int i = 0; i < Genome.genomeLength; i++) {
             genes[i] = Math.abs(random.nextInt()) % 8;
         }
         this.genes = genes;
         this.actualGeneIndex = Math.abs(random.nextInt()) % Genome.genomeLength;
     }
 
-    public int getGene(){
+    public int getGene() {
         int actualGene = genes[actualGeneIndex];
         this.actualGeneIndex = behaviourType.getNextIndex(this.actualGeneIndex, Genome.genomeLength);
         return actualGene;
     }
-    static public void initGenome(int genomeLength, int maxMutationNumber, MutationType mutationType, BehaviourType behaviourType){
+
+    static public void initGenome(int genomeLength, int maxMutationNumber, MutationType mutationType, BehaviourType behaviourType) {
         Genome.initGenome(genomeLength, 0, maxMutationNumber, mutationType, behaviourType);
     }
 
-    static public void initGenome(int genomeLength,int minMutationNumber, int maxMutationNumber, MutationType mutationType, BehaviourType behaviourType){
+    static public void initGenome(int genomeLength, int minMutationNumber, int maxMutationNumber, MutationType mutationType, BehaviourType behaviourType) {
         Genome.mutationType = mutationType;
         Genome.behaviourType = behaviourType;
         if (maxMutationNumber < minMutationNumber)
@@ -49,41 +50,42 @@ public class Genome {
             Genome.genomeLength = genomeLength;
         else
             throw new IllegalArgumentException("genome length must be higher than 0");
-        if (minMutationNumber >= 0){
+        if (minMutationNumber >= 0) {
             Genome.minMutationNumber = minMutationNumber;
             Genome.maxMutationNumber = maxMutationNumber;
-        }
-        else throw new IllegalArgumentException("number of mutation must be 0 or higher");
+        } else throw new IllegalArgumentException("number of mutation must be 0 or higher");
     }
 
-    static private int getMutationNumber(){
-        if(Genome.minMutationNumber == Genome.maxMutationNumber) return 0;
-        else return (random.nextInt() % (Genome.maxMutationNumber - Genome.minMutationNumber)) + Genome.minMutationNumber;
+    static private int getMutationNumber() {
+        if (Genome.minMutationNumber == Genome.maxMutationNumber) return 0;  // na pewno?
+        else
+            return (random.nextInt() % (Genome.maxMutationNumber - Genome.minMutationNumber)) + Genome.minMutationNumber;
     }
-    static private int genesFromShare(int share1, int share2){
+
+    static private int genesFromShare(int share1, int share2) {
         int tmp = Math.min(share1, share2);
         share1 = Math.max(share1, share2);
         share2 = tmp;
-        return (int)((float)share1/(share1 + share2)*Genome.genomeLength);
+        return (int) ((float) share1 / (share1 + share2) * Genome.genomeLength);
     }
-    static private void mutation(Genome genome){
-        Random random = new Random();
+
+    static private void mutation(Genome genome) { // czemu to jest statyczne?
         Set<Integer> indexes = new HashSet<>();
         int i = 0;
-        while (i < Genome.getMutationNumber()){
+        while (i < Genome.getMutationNumber()) {
             Integer newIndex = random.nextInt();
-            if (! indexes.contains(newIndex)) {
+            if (!indexes.contains(newIndex)) {
                 indexes.add(newIndex);
                 i++;
             }
         }
-        for (Integer index :  indexes){
+        for (Integer index : indexes) {
             genome.genes[index] = Genome.mutationType.mutateGene(genome.genes[index]);
         }
     }
 
-    static public Genome genomeCreation(Genome genome1, int share1, Genome genome2, int share2){
-        if (share1 < share2){
+    static public Genome genomeCreation(Genome genome1, int share1, Genome genome2, int share2) { // a gdyby z tego zrobić konstruktor?
+        if (share1 < share2) {
             Genome tmp = genome1;
             genome1 = genome2;
             genome2 = tmp;
@@ -93,18 +95,18 @@ public class Genome {
         Side side = Side.randomSide();
         int[] genes = new int[Genome.genomeLength];
 
-        if(side == Side.Left){
-            for (int i = 0; i < strongerGenesNumber; i++){
+        if (side == Side.Left) {
+            for (int i = 0; i < strongerGenesNumber; i++) {
                 genes[i] = genome1.genes[i];
             }
-            for (int i = strongerGenesNumber; i < Genome.genomeLength; i++){
+            for (int i = strongerGenesNumber; i < Genome.genomeLength; i++) {
                 genes[i] = genome2.genes[i];
             }
-        }else {
-            for (int i = 0; i < Genome.genomeLength - strongerGenesNumber; i++){
-                genes[i] = genome2.genes[i];
+        } else {
+            for (int i = 0; i < Genome.genomeLength - strongerGenesNumber; i++) {
+                genes[i] = genome2.genes[i];  // https://docs.oracle.com/javase/7/docs/api/java/lang/System.html#arraycopy(java.lang.Object,%20int,%20java.lang.Object,%20int,%20int)
             }
-            for (int i = Genome.genomeLength - strongerGenesNumber; i < Genome.genomeLength; i++){
+            for (int i = Genome.genomeLength - strongerGenesNumber; i < Genome.genomeLength; i++) {
                 genes[i] = genome1.genes[i];
             }
         }

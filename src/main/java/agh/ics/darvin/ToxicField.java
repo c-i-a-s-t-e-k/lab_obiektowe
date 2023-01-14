@@ -1,10 +1,10 @@
 package agh.ics.darvin;
 
-public class ToxicField implements Comparable<ToxicField>{
+public class ToxicField implements Comparable<ToxicField> {
     private final Vector2d position;
     private int toxicity = 0;
 
-    public ToxicField(Vector2d position){
+    public ToxicField(Vector2d position) {
         this.position = position;
     }
 
@@ -12,10 +12,11 @@ public class ToxicField implements Comparable<ToxicField>{
         return position;
     }
 
-    public void increaseToxicity(){
+    public void increaseToxicity() {
         toxicity++;
     }
-    public boolean equals(Object o){
+
+    public boolean equals(Object o) {
         if (o instanceof ToxicField)
             return this.position.equals(((ToxicField) o).position);
         else return false;

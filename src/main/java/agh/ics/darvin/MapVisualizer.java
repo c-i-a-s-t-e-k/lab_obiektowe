@@ -15,6 +15,7 @@ public class MapVisualizer {
 
     /**
      * Initializes the MapVisualizer with an instance of map to visualize.
+     *
      * @param map
      */
     public MapVisualizer(IWorldMap map) {
@@ -75,9 +76,9 @@ public class MapVisualizer {
         IMapElement object = null;
         if (this.map.isOccupied(currentPosition)) {
             IMapElement[] elements = this.map.elementsAt(currentPosition);
-            if(elements.length == 1)
-                 object = elements[0];
-            if(elements.length > 2)
+            if (elements.length == 1)
+                object = elements[0];
+            if (elements.length > 2)
                 return MULTIPLE_ELEMENTS;
             if (object != null) {
                 result = object.toString();

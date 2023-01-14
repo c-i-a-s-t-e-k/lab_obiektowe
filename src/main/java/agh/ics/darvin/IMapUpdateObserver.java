@@ -1,6 +1,6 @@
 package agh.ics.darvin;
 
 public interface IMapUpdateObserver {
-        void mapChanged(IWorldMap map);
+    void mapChanged(IWorldMap map);
 
 }

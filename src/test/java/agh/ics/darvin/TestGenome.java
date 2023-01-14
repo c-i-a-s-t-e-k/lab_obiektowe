@@ -7,16 +7,16 @@ import org.junit.jupiter.api.Test;
 
 public class TestGenome {
     @Test
-    public void genomeTestSameShare(){
+    public void genomeTestSameShare() {
         Genome.initGenome(4, 0, MutationType.NO_CHANGE, BehaviourType.FULL_PREDESTINATION);
-        Genome genome1 = new Genome(new int[]{2,2,2,2});
-        Genome genome2 = new Genome(new int[]{1,1,1,1});
+        Genome genome1 = new Genome(new int[]{2, 2, 2, 2});
+        Genome genome2 = new Genome(new int[]{1, 1, 1, 1});
 
         Genome genome3 = Genome.genomeCreation(genome1, 50, genome2, 50);
         int numberOf1 = 0;
         int numberOf2 = 0;
 
-        for(int i = 0; i < 4; i++){
+        for (int i = 0; i < 4; i++) {
             int x = genome3.getGene();
             switch (x) {
                 case 1 -> numberOf1++;
@@ -26,17 +26,18 @@ public class TestGenome {
         Assertions.assertEquals(2, numberOf2);
         Assertions.assertEquals(2, numberOf1);
     }
+
     @Test
-    public void genomeTestDifferentShare(){
+    public void genomeTestDifferentShare() {
         Genome.initGenome(4, 0, MutationType.NO_CHANGE, BehaviourType.FULL_PREDESTINATION);
-        Genome genome2 = new Genome(new int[]{2,2,2,2});
-        Genome genome1 = new Genome(new int[]{1,1,1,1});
+        Genome genome2 = new Genome(new int[]{2, 2, 2, 2});
+        Genome genome1 = new Genome(new int[]{1, 1, 1, 1});
 
         Genome genome3 = Genome.genomeCreation(genome1, 75, genome2, 25);
         int numberOf1 = 0;
         int numberOf2 = 0;
 
-        for(int i = 0; i < 4; i++){
+        for (int i = 0; i < 4; i++) {
             int x = genome3.getGene();
             switch (x) {
                 case 1 -> numberOf1++;

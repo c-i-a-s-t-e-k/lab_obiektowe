@@ -1,11 +1,11 @@
 package agh.ics.darvin;
 
-enum Side{
-    Left,
+enum Side {
+    Left,  // zwyczajowo wielkimi literami
     Right;
 
-    static public Side randomSide(){
-        if ((int)(Math.random() + 0.5) == 0) return Left;
+    static public Side randomSide() {
+        if ((int) (Math.random() + 0.5) == 0) return Left;
         else return Right;
     }
 }

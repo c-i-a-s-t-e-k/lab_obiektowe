@@ -2,7 +2,7 @@ package agh.ics.darvin.gui;
 
 import javafx.scene.control.TextField;
 
-public class NumberText extends TextField {
+public class NumberText extends TextField {  // mało wymowna nazwa
     public NumberText(int initial_value) {
         super(String.format("%d", initial_value));
     }
@@ -22,6 +22,7 @@ public class NumberText extends TextField {
     private boolean validate(String text) {
         return text.matches("[0-9]*");
     }
+
     public int getInt() {
         try {
             return Integer.parseInt(this.getText());

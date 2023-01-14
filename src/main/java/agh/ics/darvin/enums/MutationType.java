@@ -7,36 +7,39 @@ public enum MutationType {
     SLIGHT_CHANGE,
     NO_CHANGE;
 
-    private final Random random;
+    private final Random random; // static
 
-    private int fullRandomChange(int x){
-        int result = this.random.nextInt() % 8;
+    private int fullRandomChange(int x) {
+        int result = this.random.nextInt() % 8;  // do-while?
         while (x == result)
             result = this.random.nextInt() % 8;
         return result;
     }
-    private int slightChange(int x){
+
+    private int slightChange(int x) {
         int result = x;
         if (this.random.nextInt() % 2 == 0)
-            result ++;
-        else result --;
+            result++;
+        else result--;
 
         if (result >= 0) return result % 8;
         else return 7;
     }
-    private MutationType(){
+
+    private MutationType() {
         this.random = new Random();
 
     }
 
-    public Integer mutateGene(int gene){
-        return switch (this){
+    public Integer mutateGene(int gene) {
+        return switch (this) {
             case FULL_RANDOM -> fullRandomChange(gene);
             case SLIGHT_CHANGE -> slightChange(gene);
             case NO_CHANGE -> gene;
         };
     }
-    static public MutationType fromString(String name){
+
+    static public MutationType fromString(String name) {
         for (var e : MutationType.values()) {
             if (name == e.toString())
                 return e;

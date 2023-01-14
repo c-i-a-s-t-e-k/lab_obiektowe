@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Test;
 
 public class TestElementsContainer {
     @Test
-    public void addingTest(){
+    public void addingTest() {
         ElementsContainer container = new ElementsContainer();
-        Plant grass = new Plant(new Vector2d(0,0));
+        Plant grass = new Plant(new Vector2d(0, 0));
         container.addElement(grass);
-        Assertions.assertEquals(grass, container.getPlant(new Vector2d(0,0)));
+        Assertions.assertEquals(grass, container.getPlant(new Vector2d(0, 0)));
     }
 
     @Test
@@ -33,9 +33,10 @@ public class TestElementsContainer {
         container.removeAnimal(animal1, animal1.getPosition());
         Assertions.assertArrayEquals(new IMapElement[]{animal2}, container.getAnimals(vector2d));
     }
+
     @Test
-    public void animalEmptyTableReturn(){
+    public void animalEmptyTableReturn() {
         ElementsContainer container = new ElementsContainer();
-        Assertions.assertArrayEquals(new IWorldMap[0], container.getAnimals(new Vector2d(0,0)));
+        Assertions.assertArrayEquals(new IWorldMap[0], container.getAnimals(new Vector2d(0, 0)));
     }
 }
